@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binay Paramanik - Portfolio</title>
+    <meta name="description" content="Binay Paramanik's Portfolio - MERN Stack Developer, AI/ML Engineer, IoT Specialist">
+    <meta name="keywords" content="Binay Paramanik, Portfolio, MERN Stack, AI, Machine Learning, IoT, Web Developer">
+    <meta name="author" content="Binay Paramanik">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Binay Paramanik - Portfolio">
+    <meta property="og:description" content="MERN Stack Developer, AI/ML Engineer, IoT Specialist">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://binay8392.github.io/portfolio">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body data-theme="dark">
+    <!-- Background Elements -->
+    <div class="fixed-background">
+        <div class="bg-base"></div>
+        <div class="bg-animated" id="animatedBg"></div>
+        <div class="bg-mobile-accent" id="mobileAccent"></div>
+        <div class="bg-pattern" id="bgPattern"></div>
+    </div>
+
+    <!-- Floating Effects -->
+    <div class="floating-effects" id="floatingEffects">
+        <div class="floating-orb floating-orb-1" id="floatingOrb1"></div>
+        <div class="floating-orb floating-orb-2" id="floatingOrb2"></div>
+        <div class="mobile-particles" id="mobileParticles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <i data-lucide="code"></i>
+                </div>
+                <span class="brand-text">Binay</span>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="theme-switcher" id="themeSwitcher">
+                    <button class="theme-btn" data-theme="dark" title="Dark Theme">
+                        <i data-lucide="moon"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="blue" title="Blue Theme">
+                        <i data-lucide="droplets"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="green" title="Green Theme">
+                        <i data-lucide="leaf"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="orange" title="Orange Theme">
+                        <i data-lucide="sun"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="purple" title="Purple Theme">
+                        <i data-lucide="zap"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="red" title="Red Theme">
+                        <i data-lucide="heart"></i>
+                    </button>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i data-lucide="sparkles"></i>
+                        <span>Welcome to Binay's portfolio</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="text-gradient">Binay Paramanik</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        MERN Stack Developer | AI/ML Engineer | IoT Specialist
+                    </p>
+                    
+                    <p class="hero-description">
+                        Passionate about creating innovative solutions that bridge the gap between technology and real-world problems. 
+                        I specialize in full-stack development, artificial intelligence, and IoT systems.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="scrollToSection('portfolio')">
+                            <i data-lucide="rocket"></i>
+                            View My Work
+                        </button>
+                        <button class="btn-secondary" onclick="scrollToSection('contact')">
+                            <i data-lucide="mail"></i>
+                            Get In Touch
+                        </button>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="image-container">
+                        <img src="/binay pic.jpg" alt="Binay Paramanik" class="profile-image">
+                        <div class="image-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio-section" id="portfolio">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">My Portfolio</h2>
+                    <p class="section-subtitle">Explore my work across different domains</p>
+                </div>
+                
+                <div class="portfolio-tabs">
+                    <button class="tab-btn active" data-tab="projects">
+                        <i data-lucide="code-2"></i>
+                        Projects
+                    </button>
+                    <button class="tab-btn" data-tab="certifications">
+                        <i data-lucide="award"></i>
+                        Certifications
+                    </button>
+                    <button class="tab-btn" data-tab="skills">
+                        <i data-lucide="brain"></i>
+                        Skills
+                    </button>
+                </div>
+                
+                <div class="portfolio-content">
+                    <!-- Projects Tab -->
+                   <!-- Projects Tab -->
+<div class="tab-content active" id="projects">
+    <div class="projects-grid">
+
+        <!-- Hardware/ML Projects (Completed) -->
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Ultra Sonic Radar</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Hardware radar system using ultrasonic sensors to detect and visualize objects for robotics and security applications.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Arduino</span>
+                <span class="tech-tag">Sensors</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Obstacle Detection</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Real-Time Scanning</span></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Automatic Fire Fighting Robot</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Autonomous robot equipped to detect and extinguish fires in hazardous environments.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Robotics</span>
+                <span class="tech-tag">Sensors</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Fire Detection</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Autonomous Navigation</span></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Automatic Street Light</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Smart lighting system automating street lights based on ambient brightness and motion detection.</p>
+            <div class="project-tech">
+                <span class="tech-tag">IoT</span>
+                <span class="tech-tag">Sensors</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Motion Detection</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Energy Saving</span></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Traffic Light Detection and Negotiation in Unreal Engine (MATLAB)</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Simulated traffic light detection and negotiation for autonomous vehicles, leveraging MATLAB and Unreal Engine integration.</p>
+            <div class="project-tech">
+                <span class="tech-tag">MATLAB</span>
+                <span class="tech-tag">Unreal Engine</span>
+                <span class="tech-tag">Computer Vision</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Simulation</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Autonomous Navigation</span></div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h3>SDG Quiz Website with Chatbot</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Interactive quiz web platform on Sustainable Development Goals, featuring a supportive AI chatbot for guidance.</p>
+            <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">AI Chatbot</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Dynamic Quizzes</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>AI Assistant</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Fake News Detection using NLP/AI/ML</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Automated system detecting fake news articles using natural language processing and machine learning classification models.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">NLP</span>
+                <span class="tech-tag">AI/ML</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Text Analysis</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Fake News Classification</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Tic Tac Toe (OOPs Java)</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Classic Tic Tac Toe game implemented using object-oriented principles in Java.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">OOP</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Game Logic</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>User Interface</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>House Price Prediction</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Machine learning model predicting house prices using advanced data analytics techniques.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Data Analytics</span>
+                <span class="tech-tag">ML</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Price Prediction</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Feature Engineering</span></div>
+            </div>
+        </div>
+
+        <!-- Retained & New Projects (mixed statuses) -->
+        <div class="project-card">
+            <div class="project-header">
+                <h3>E-Commerce Platform</h3>
+                <span class="project-status active">Active</span>
+            </div>
+            <p class="project-description">Full-stack MERN application with advanced features like real-time inventory management, payment integration, and AI-powered product recommendations.</p>
+            <div class="project-tech">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">AI/ML</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Real-time Inventory</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Payment Gateway</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>AI Recommendations</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>IoT Home Automation</h3>
+                <span class="project-status completed">Completed</span>
+            </div>
+            <p class="project-description">Smart home system using Arduino, Raspberry Pi, and cloud integration for remote monitoring and control of home appliances.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Arduino</span>
+                <span class="tech-tag">Raspberry Pi</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Firebase</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Remote Control</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Real-time Monitoring</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Energy Analytics</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>AI Chat Application</h3>
+                <span class="project-status in-progress">In Progress</span>
+            </div>
+            <p class="project-description">Advanced chatbot with natural language processing, sentiment analysis, and integration with multiple AI models for comprehensive responses.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">WebSockets</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>NLP Processing</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Sentiment Analysis</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Multi-Model AI</span></div>
+            </div>
+        </div>
+        
+        <!-- Additional New Projects -->
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Online Election System</h3>
+                <span class="project-status in-development">In Development</span>
+            </div>
+            <p class="project-description">A comprehensive voting platform with secure authentication, real-time results, and administrative dashboard.</p>
+            <div class="project-tech">
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">JWT</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Secure Voting</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Real-time Results</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Admin Panel</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>User Authentication</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Smart Library Management System</h3>
+                <span class="project-status in-development">In Development</span>
+            </div>
+            <p class="project-description">IoT-enabled library system with automated book tracking, user management, and analytics dashboard.</p>
+            <div class="project-tech">
+                <span class="tech-tag">IoT</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">SQLite</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>IoT Integration</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Book Tracking</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>User Management</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Analytics</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>AI Mental Health Therapist Chatbot</h3>
+                <span class="project-status in-development">In Development</span>
+            </div>
+            <p class="project-description">Gen AI + NLP powered chatbot providing mental health support through intelligent conversations.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">NLP</span>
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">Flask API</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>NLP Processing</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Emotional Analysis</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>24/7 Support</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Privacy Focused</span></div>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-header">
+                <h3>Automatic Accident Detection & Hospital Connect</h3>
+                <span class="project-status in-development">In Development</span>
+            </div>
+            <p class="project-description">AI system that automatically detects vehicle accidents and connects victims with nearest hospitals using IoT sensors and emergency response.</p>
+            <div class="project-tech">
+                <span class="tech-tag">AI/ML</span>
+                <span class="tech-tag">IoT</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">GPS</span>
+                <span class="tech-tag">Emergency APIs</span>
+            </div>
+            <div class="project-features">
+                <div class="feature-item"><i data-lucide="check"></i><span>Accident Detection</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>GPS Tracking</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Hospital Integration</span></div>
+                <div class="feature-item"><i data-lucide="check"></i><span>Emergency Response</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    
+                    <!-- Certifications Tab -->
+<div class="tab-content" id="certifications">
+    <div class="certifications-grid">
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i data-lucide="award"></i>
+            </div>
+            <h3>The Chinese University of Hong Kong </h3>
+            <h3> 香港中文大學 </h3>
+            <p>Information Theory (Coursera)</p>
+            <div class="cert-date">2024</div>
+            <button class="verify-btn" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/SE3GC4P0XI2Q', '_blank')">
+                <i data-lucide="external-link"></i>
+                Verify
+            </button>
+        </div>
+        
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i data-lucide="brain"></i>
+            </div>
+            <h3>IBM</h3>
+            <p> Machine Learning with Python(Coursera)</p>
+            <div class="cert-date">2024</div>
+            <button class="verify-btn" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/Y3OAKHM7WUHM', '_blank')">
+                <i data-lucide="external-link"></i>
+                Verify
+            </button>
+        </div>
+        
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i data-lucide="code"></i>
+            </div>
+            <h3>Deep Learning Specialization</h3>
+            <p>deeplearning.ai (Coursera)</p>
+            <div class="cert-date">2024</div>
+            <button class="verify-btn" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/F9EX9NBR8WCN', '_blank')">
+                <i data-lucide="external-link"></i>
+                Verify
+            </button>
+        </div>
+        
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i data-lucide="cpu"></i>
+            </div>
+            <h3>DSA in c++ // DEcode 2.0</h3>
+            <p>PW Skills</p>
+            <div class="cert-date">2024</div>
+            <button class="verify-btn" onclick="window.open('https://pwskills.com/learn/certificate/223fa91c-9480-45f4-8b31-ff96742f83cb/', '_blank')">
+                <i data-lucide="external-link"></i>
+                Verify
+            </button>
+        </div>
+        
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i data-lucide="book"></i>
+            </div>
+            <h3>Advanced System Security Topics</h3>
+            <p>University of Colorado (Coursera)</p>
+            <div class="cert-date">2024</div>
+            <button class="verify-btn" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/F9EX9NBR8WCN', '_blank')">
+                <i data-lucide="external-link"></i>
+                Verify
+            </button>
+        </div>
+        
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i data-lucide="briefcase"></i>
+            </div>
+            <h3>DELLOITE || Cyber Job Simulation</h3>
+            <p>Forage</p>
+            <div class="cert-date">2024</div>
+            <button class="verify-btn" onclick="window.open('https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_earCCkYF5jmyiDfrf_1751087625697_completion_certificate.pdf', '_blank')">
+                <i data-lucide="external-link"></i>
+                Verify
+            </button>
+        </div>
+    </div>
+</div>
+
+                    
+                    <!-- Skills Tab -->
+                    <div class="tab-content" id="skills">
+                        <div class="skills-categories">
+                            <div class="skill-category">
+                                <h3>Frontend Development</h3>
+                                <div class="skills-list">
+                                    <div class="skill-item">
+                                        <span class="skill-name">React.js</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">JavaScript/TypeScript</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">HTML/CSS</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">Tailwind CSS</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 85%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3>Backend Development</h3>
+                                <div class="skills-list">
+                                    <div class="skill-item">
+                                        <span class="skill-name">Node.js</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">Express.js</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">MongoDB</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">Python</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 75%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3>AI/ML & IoT</h3>
+                                <div class="skills-list">
+                                    <div class="skill-item">
+                                        <span class="skill-name">Machine Learning</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">TensorFlow</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 70%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">Arduino/Raspberry Pi</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-item">
+                                        <span class="skill-name">IoT Protocols</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar" style="--skill-level: 75%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Get to know more about my journey and expertise</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a passionate developer with a strong foundation in the MERN stack, artificial intelligence, 
+                            and IoT technologies. My journey began with a curiosity about how technology can solve real-world 
+                            problems, and this curiosity has driven me to explore various domains from web development to 
+                            machine learning.
+                        </p>
+                        
+                        <p>
+                            Over the years, I've worked on diverse projects ranging from e-commerce platforms to smart home 
+                            automation systems. I believe in writing clean, maintainable code and staying updated with the 
+                            latest industry trends and best practices.
+                        </p>
+                        
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <i data-lucide="target"></i>
+                                <span>Problem-solving mindset</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i data-lucide="users"></i>
+                                <span>Collaborative team player</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i data-lucide="trending-up"></i>
+                                <span>Continuous learner</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i data-lucide="lightbulb"></i>
+                                <span>Innovation enthusiast</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <div class="image-card">
+                            <img src="/binay1.jpg" alt="Binay Paramanik working" class="about-photo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Let's discuss your next project or opportunity</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <span>binayparamanik3@gmail.com</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Phone</h3>
+                                <span>+91 8392042619</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>Location</h3>
+                                <span>kolkata,India</span>
+                            </div>
+                             <div class="contact-details">
+                                <h3>Local address</h3>
+                                <span>jhalida,purulia,west bengal 723213</span>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://github.com/Binay8392" target="_blank" class="social-link">
+                                <i data-lucide="github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/binayparamanik" target="_blank" class="social-link">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/binayparamanik" target="_blank" class="social-link">
+                                <i data-lucide="twitter"></i>
+                            </a>
+                            <a href="mailto:binayparamanik3@gmail.com" class="social-link">
+                                <i data-lucide="mail"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+      <div class="contact-form">
+  <form
+    id="contactForm"
+    class="form"
+    action="https://api.web3forms.com/submit"
+    method="POST"
+  >
+    <!-- Hidden Web3Forms Access Key -->
+    <input
+      type="hidden"
+      name="access_key"
+      value="a11b85f6-d4d3-4902-8909-7947fc57105b"
+    />
+
+    <!-- Optional redirect after submission -->
+    <input
+      type="hidden"
+      name="redirect"
+      value="https://yourwebsite.com/thank-you.html"
+    />
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" required />
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+
+    <!-- Anti-bot honeypot field -->
+    <input type="checkbox" name="botcheck" style="display: none" />
+
+    <button type="submit" class="btn-primary">
+      <i data-lucide="send"></i>
+      Send Message
+    </button>
+  </form>
+  <!-- Success or error messages will be displayed here dynamically -->
+</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand-icon">
+                        <i data-lucide="code"></i>
+                    </div>
+                    <span class="brand-text">Binay</span>
+                </div>
+                
+                <p class="footer-text">
+                    Built with passion 
+                </p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Binay Paramanik. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
