@@ -1230,3 +1230,26 @@ p {
 * {
     transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
 }
+
+
+/* for responsive view */
+/* Mobile view fix for theme switcher */
+@media (max-width: 768px) {
+  .theme-switcher {
+    position: fixed; /* Keeps it floating but out of the way */
+    top: 15px;
+    right: 15px; /* Moves to top-right corner */
+    transform: none; /* Removes middle-centering */
+    flex-direction: row; /* Icons side by side instead of vertical */
+    background: rgba(0, 0, 0, 0.4); /* Optional background */
+    border-radius: 8px;
+    padding: 5px;
+    gap: 6px;
+    z-index: 9999;
+  }
+
+  .theme-switcher button {
+    width: 36px;
+    height: 36px;
+  }
+}
