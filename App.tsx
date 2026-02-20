@@ -3,6 +3,11 @@ import HeroSection from './components/HeroSection'
 import PortfolioSection from './components/PortfolioSection'
 import AboutSection from './components/AboutSection'
 import AboutCard from './components/AboutCard'
+import Preloader from './components/Preloader'
+import CustomCursor from './components/CustomCursor'
+import ScrollProgress from './components/ScrollProgress'
+import WhatsAppButton from './components/WhatsAppButton'
+import AIChatbot from './components/AIChatbot'
 import { ThemeProvider, useTheme } from './components/ThemeContext'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
@@ -16,7 +21,7 @@ function AppContent() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768)
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
@@ -72,15 +77,24 @@ function AppContent() {
   const themeColors = getThemeColors()
 
   return (
-    <div className="min-h-screen bg-gray-900 overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#0f0f0f] overflow-x-hidden relative selection:bg-cyan-500/30 selection:text-white">
+      <Preloader />
+      <CustomCursor />
+      <ScrollProgress />
+      <WhatsAppButton />
+      <AIChatbot />
+
+      {/* Perspective Container for Ani-Gravity effects */}
+      <div className="fixed inset-0 pointer-events-none" style={{ perspective: '1000px' }} />
+
       {/* Enhanced contrast background for mobile */}
-      <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900" />
-      
+      <div className="fixed inset-0 bg-[#0f0f0f]" />
+
       {/* Simplified animated background for better mobile performance */}
       <motion.div
         className={`fixed inset-0 ${isMobile ? 'opacity-60' : 'opacity-80'}`}
         style={{
-          background: isMobile ? 
+          background: isMobile ?
             `linear-gradient(135deg, rgba(15, 15, 35, 0.9) 0%, rgba(25, 15, 45, 0.95) 50%, rgba(15, 15, 35, 0.9) 100%)` :
             `
               radial-gradient(circle at 20% 80%, ${themeColors.primary} 0%, transparent 50%),
@@ -130,7 +144,7 @@ function AppContent() {
 
       {/* Navigation */}
       <Navigation />
-      
+
       {/* Main Content with better contrast */}
       <main className="relative">
         <HeroSection />
@@ -138,11 +152,11 @@ function AppContent() {
         <AboutSection />
         <AboutCard />
       </main>
-      
+
       {/* Simplified floating effects - only on desktop */}
       {!isMobile && (
         <>
-          <motion.div 
+          <motion.div
             className="fixed top-1/4 right-10 w-32 h-32 rounded-full pointer-events-none"
             style={{
               background: `radial-gradient(circle, ${themeColors.primary.replace('0.3', '0.3')} 0%, transparent 70%)`,
@@ -160,8 +174,8 @@ function AppContent() {
               ease: "easeInOut"
             }}
           />
-          
-          <motion.div 
+
+          <motion.div
             className="fixed bottom-1/4 left-10 w-40 h-40 rounded-full pointer-events-none"
             style={{
               background: `radial-gradient(circle, ${themeColors.secondary.replace('0.3', '0.3')} 0%, transparent 70%)`,
