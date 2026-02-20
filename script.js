@@ -79,14 +79,14 @@ function startIntroAnimation() {
             if (currentChar < phrases[currentPhrase].length) {
                 typingText.textContent += phrases[currentPhrase].charAt(currentChar);
                 currentChar++;
-                setTimeout(type, 50);
+                setTimeout(type, 15);
             } else {
                 setTimeout(() => {
                     typingText.textContent = "";
                     currentChar = 0;
                     currentPhrase++;
                     type();
-                }, 1000);
+                }, 200);
             }
         }
     }
@@ -95,7 +95,7 @@ function startIntroAnimation() {
     // 4. Progress Bar Synchronization
     let progress = 0;
     const progressInterval = setInterval(() => {
-        progress += Math.random() * 2;
+        progress += Math.random() * 8 + 4;
         if (progress >= 100) {
             progress = 100;
             clearInterval(progressInterval);
@@ -113,8 +113,8 @@ function startIntroAnimation() {
                     if (!window.portfolioApp) {
                         window.portfolioApp = new Portfolio();
                     }
-                }, 1000);
-            }, 1500);
+                }, 400);
+            }, 400);
         }
         progressBar.style.width = progress + "%";
         progressText.textContent = Math.floor(progress) + "%";
