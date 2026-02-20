@@ -195,591 +195,451 @@
                     <!-- Projects Tab -->
                     <div class="tab-content active" id="projects">
                         <div class="projects-grid">
-                                                        <!-- PrepTrack OS - UPGRADED CARD v2 -->
-                            <style>
-                            .preptrack-card {
-                                position: relative;
-                                background: linear-gradient(135deg, rgba(10,10,30,0.92) 0%, rgba(20,10,45,0.9) 100%);
-                                border: 1px solid rgba(139,92,246,0.25);
-                                border-radius: 1rem;
-                                padding: 0 1.75rem 1.75rem;
-                                overflow: hidden;
-                                transition: transform 0.35s ease, box-shadow 0.35s ease;
-                                box-shadow: 0 0 0 1px rgba(139,92,246,0.1), 0 8px 40px rgba(0,0,0,0.5);
-                            }
-                            .preptrack-card:hover {
-                                transform: translateY(-6px);
-                                box-shadow: 0 0 0 1px rgba(139,92,246,0.35), 0 20px 60px rgba(139,92,246,0.2), 0 0 80px rgba(0,240,255,0.06);
-                            }
-                            @keyframes ptBorderH {
-                                0%   { transform: scaleX(0); transform-origin: left;  opacity:1; }
-                                45%  { transform: scaleX(1); transform-origin: left;  opacity:1; }
-                                55%  { transform: scaleX(1); transform-origin: right; opacity:1; }
-                                100% { transform: scaleX(0); transform-origin: right; opacity:0; }
-                            }
-                            @keyframes ptBorderV {
-                                0%   { transform: scaleY(0); transform-origin: top;    opacity:1; }
-                                45%  { transform: scaleY(1); transform-origin: top;    opacity:1; }
-                                55%  { transform: scaleY(1); transform-origin: bottom; opacity:1; }
-                                100% { transform: scaleY(0); transform-origin: bottom; opacity:0; }
-                            }
-                            .pt-b-top,.pt-b-bot,.pt-b-l,.pt-b-r { position:absolute; z-index:2; pointer-events:none; }
-                            .pt-b-top { top:0;left:0;right:0;height:2px; background:linear-gradient(to right,transparent,#00f0ff,#8b5cf6,transparent); animation:ptBorderH 4s ease-in-out infinite; }
-                            .pt-b-bot { bottom:0;left:0;right:0;height:2px; background:linear-gradient(to right,transparent,#a855f7,#00f0ff,transparent); animation:ptBorderH 4s ease-in-out infinite 2s; }
-                            .pt-b-l { top:0;bottom:0;left:0;width:2px; background:linear-gradient(to bottom,transparent,#8b5cf6,#00f0ff,transparent); animation:ptBorderV 4s ease-in-out infinite 1s; }
-                            .pt-b-r { top:0;bottom:0;right:0;width:2px; background:linear-gradient(to bottom,transparent,#00f0ff,#8b5cf6,transparent); animation:ptBorderV 4s ease-in-out infinite 3s; }
-                            .pt-corner { position:absolute; width:14px; height:14px; z-index:3; pointer-events:none; }
-                            .pt-corner.tl { top:0;left:0; border-top:2px solid #00f0ff; border-left:2px solid #00f0ff; border-radius:2px 0 0 0; }
-                            .pt-corner.tr { top:0;right:0; border-top:2px solid #8b5cf6; border-right:2px solid #8b5cf6; border-radius:0 2px 0 0; }
-                            .pt-corner.bl { bottom:0;left:0; border-bottom:2px solid #8b5cf6; border-left:2px solid #8b5cf6; border-radius:0 0 0 2px; }
-                            .pt-corner.br { bottom:0;right:0; border-bottom:2px solid #00f0ff; border-right:2px solid #00f0ff; border-radius:0 0 2px 0; }
-                            @keyframes ptGlowPulse { 0%,100%{opacity:0.4;} 50%{opacity:0.75;} }
-                            .pt-header {
-                                position:relative; margin:0 -1.75rem; padding:1.2rem 1.75rem 1rem;
-                                background:linear-gradient(135deg,rgba(0,240,255,0.08),rgba(139,92,246,0.12),rgba(0,240,255,0.06));
-                                border-bottom:1px solid rgba(0,240,255,0.15); overflow:hidden;
-                            }
-                            .pt-header-glow {
-                                position:absolute;inset:0;pointer-events:none;
-                                background:radial-gradient(ellipse at 50% 0%,rgba(0,240,255,0.18) 0%,transparent 70%);
-                                animation:ptGlowPulse 3s ease-in-out infinite;
-                            }
-                            .pt-title-row { position:relative;z-index:1; display:flex;align-items:center;gap:0.85rem; }
-                            .pt-icon-box {
-                                width:42px;height:42px;border-radius:10px;flex-shrink:0;font-size:20px;
-                                background:linear-gradient(135deg,rgba(0,240,255,0.2),rgba(139,92,246,0.3));
-                                border:1px solid rgba(0,240,255,0.3);
-                                display:flex;align-items:center;justify-content:center;
-                                box-shadow:0 0 14px rgba(0,240,255,0.2);
-                            }
-                            @keyframes ptShimmer { 0%{background-position:-200% center;} 100%{background-position:200% center;} }
-                            .pt-name {
-                                font-size:1.15rem;font-weight:700;margin:0;
-                                background:linear-gradient(90deg,#fff 0%,#a5f3fc 50%,#c4b5fd 100%);
-                                background-size:200%; -webkit-background-clip:text; background-clip:text; color:transparent;
-                                animation:ptShimmer 4s linear infinite;
-                            }
-                            .pt-ver-row { display:flex;align-items:center;gap:8px;margin-top:4px; }
-                            .pt-ver-badge { font-size:10px;font-weight:600;letter-spacing:0.5px;padding:2px 8px;border-radius:20px;background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.4);color:#c4b5fd;text-transform:uppercase; }
-                            @keyframes ptLive { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5);} 50%{box-shadow:0 0 0 4px rgba(34,197,94,0);} }
-                            .pt-live-dot { width:7px;height:7px;border-radius:50%;background:#22c55e;animation:ptLive 1.8s ease-in-out infinite; }
-                            .pt-live-txt { font-size:10px;font-weight:700;color:#22c55e;letter-spacing:1px; }
-                            /* STAT BOXES */
-                            @keyframes ptStatShine { 0%{background-position:-100% center;} 100%{background-position:200% center;} }
-                            .pt-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1rem; }
-                            .pt-stat-box {
-                                display:flex;flex-direction:column;align-items:center;gap:3px;
-                                padding:0.65rem 0.4rem;border-radius:10px;text-align:center;
-                                background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
-                                position:relative;overflow:hidden; cursor:default;
-                                transition:all 0.25s ease;
-                            }
-                            .pt-stat-box::before {
-                                content:"";position:absolute;inset:0;
-                                background:linear-gradient(90deg,transparent 0%,rgba(0,240,255,0.08) 50%,transparent 100%);
-                                background-size:200%; animation:ptStatShine 3s linear infinite;
-                            }
-                            .pt-stat-box:hover { border-color:rgba(0,240,255,0.3);background:rgba(0,240,255,0.06);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,240,255,0.1); }
-                            .pt-stat-num { font-size:1.1rem;font-weight:800;color:#00f0ff;text-shadow:0 0 10px rgba(0,240,255,0.5); }
-                            .pt-stat-lbl { font-size:0.65rem;color:#94a3b8;font-weight:500;letter-spacing:0.3px; }
-                            /* FEATURE BOXES */
-                            @keyframes ptFeatPop { from{opacity:0;transform:scale(0.85) translateY(6px);} to{opacity:1;transform:scale(1) translateY(0);} }
-                            .pt-feat-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;margin-top:0.85rem; }
-                            .pt-feat-box {
-                                display:flex;align-items:center;gap:8px;
-                                padding:0.55rem 0.75rem;border-radius:8px;
-                                background:rgba(139,92,246,0.07); border:1px solid rgba(139,92,246,0.18);
-                                font-size:0.8rem;color:#cbd5e1;font-weight:500;
-                                transition:all 0.2s ease; animation:ptFeatPop 0.5s ease both;
-                            }
-                            .pt-feat-box:nth-child(1){animation-delay:0.05s;}
-                            .pt-feat-box:nth-child(2){animation-delay:0.1s;}
-                            .pt-feat-box:nth-child(3){animation-delay:0.15s;}
-                            .pt-feat-box:nth-child(4){animation-delay:0.2s;}
-                            .pt-feat-box:hover { background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.4);color:#e2e8f0;transform:translateX(3px);box-shadow:-3px 0 0 0 #8b5cf6; }
-                            .pt-feat-icon { font-size:14px; }
-                            /* UPCOMING */
-                            .pt-upcoming { margin-top:0.85rem;padding:0.55rem 0.9rem;border-radius:8px;font-size:0.75rem;color:#94a3b8;line-height:1.5;border:1px dashed rgba(251,191,36,0.25);background:rgba(251,191,36,0.04);display:flex;flex-wrap:wrap;align-items:center;gap:6px; }
-                            .pt-upcoming-lbl { font-size:0.68rem;font-weight:700;letter-spacing:0.4px;color:#fbbf24;text-transform:uppercase;background:rgba(251,191,36,0.12);padding:2px 7px;border-radius:10px;border:1px solid rgba(251,191,36,0.3); }
-                            /* CTA */
-                            @keyframes ptCtaSheen { 0%{left:-60%;} 100%{left:140%;} }
-                            .pt-cta-btn {
-                                position:relative;overflow:hidden;
-                                display:inline-flex;align-items:center;gap:6px;
-                                padding:0.5rem 1.1rem;border-radius:8px;font-size:0.8rem;font-weight:600;
-                                background:linear-gradient(135deg,#00c8ff,#8b5cf6); color:#fff;
-                                text-decoration:none;border:none;cursor:pointer;
-                                box-shadow:0 0 16px rgba(0,240,255,0.3); transition:transform 0.2s,box-shadow 0.2s;
-                            }
-                            .pt-cta-btn::after { content:"";position:absolute;top:-50%;width:30%;height:200%;background:rgba(255,255,255,0.18);transform:skewX(-20deg);animation:ptCtaSheen 2.5s ease-in-out infinite; }
-                            .pt-cta-btn:hover { transform:translateY(-2px);box-shadow:0 0 28px rgba(0,240,255,0.5),0 6px 20px rgba(0,0,0,0.3); }
-                            .pt-cta-ghost { display:inline-flex;align-items:center;gap:6px;padding:0.5rem 1rem;border-radius:8px;font-size:0.8rem;font-weight:500;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:#94a3b8;text-decoration:none;transition:all 0.2s ease; }
-                            .pt-cta-ghost:hover { background:rgba(255,255,255,0.1);color:#e2e8f0;border-color:rgba(255,255,255,0.25);transform:translateY(-2px); }
-                            </style>
+<style id="pc-shared-styles">
+/* ═══════════════════════════════════════
+   PREMIUM CARD SYSTEM — All Project & Cert Cards
+═══════════════════════════════════════ */
+/* Animated border keyframes */
+@keyframes pcBorderH{0%{transform:scaleX(0);transform-origin:left;opacity:1}45%{transform:scaleX(1);transform-origin:left;opacity:1}55%{transform:scaleX(1);transform-origin:right;opacity:1}100%{transform:scaleX(0);transform-origin:right;opacity:0}}
+@keyframes pcBorderV{0%{transform:scaleY(0);transform-origin:top;opacity:1}45%{transform:scaleY(1);transform-origin:top;opacity:1}55%{transform:scaleY(1);transform-origin:bottom;opacity:1}100%{transform:scaleY(0);transform-origin:bottom;opacity:0}}
+@keyframes pcGlow{0%,100%{opacity:.35}50%{opacity:.7}}
+@keyframes pcShimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes pcStatShine{0%{background-position:-100% center}100%{background-position:200% center}}
+@keyframes pcFeatPop{from{opacity:0;transform:scale(.85) translateY(6px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes pcLive{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}50%{box-shadow:0 0 0 4px rgba(34,197,94,0)}}
+@keyframes pcCtaSheen{0%{left:-60%}100%{left:140%}}
+@keyframes pcCertSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes pcCertPop{from{opacity:0;transform:translateY(16px) scale(.93)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes pcBadgePulse{0%,100%{box-shadow:0 0 0 0 rgba(0,240,255,.35)}50%{box-shadow:0 0 0 6px rgba(0,240,255,0)}}
 
-                            <div class="project-card preptrack-card" id="preptrack-card">
-                                <!-- Animated border segments -->
-                                <div class="pt-b-top"></div>
-                                <div class="pt-b-bot"></div>
-                                <div class="pt-b-l"></div>
-                                <div class="pt-b-r"></div>
-                                <!-- Corner accents -->
-                                <div class="pt-corner tl"></div>
-                                <div class="pt-corner tr"></div>
-                                <div class="pt-corner bl"></div>
-                                <div class="pt-corner br"></div>
+/* Base premium card */
+.pc-card{
+  position:relative;
+  background:linear-gradient(135deg,rgba(10,10,30,.92) 0%,rgba(20,10,45,.9) 100%);
+  border:1px solid rgba(139,92,246,.22);
+  border-radius:1rem;
+  padding:0 1.5rem 1.5rem;
+  overflow:hidden;
+  transition:transform .35s ease,box-shadow .35s ease;
+  box-shadow:0 0 0 1px rgba(139,92,246,.1),0 8px 40px rgba(0,0,0,.5);
+}
+.pc-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 0 1px rgba(139,92,246,.35),0 20px 60px rgba(139,92,246,.18),0 0 80px rgba(0,240,255,.05);
+}
 
-                                <!-- Holographic header -->
-                                <div class="pt-header">
-                                    <div class="pt-header-glow"></div>
-                                    <div class="pt-title-row">
-                                        <div class="pt-icon-box">&#x1F680;</div>
-                                        <div>
-                                            <div class="pt-name">PrepTrack OS</div>
-                                            <div class="pt-ver-row">
-                                                <span class="pt-ver-badge">v2.0 &mdash; In Development</span>
-                                                <div class="pt-live-dot"></div>
-                                                <span class="pt-live-txt">LIVE</span>
-                                            </div>
+/* Animated border segments */
+.pc-bt,.pc-bb,.pc-bl,.pc-br{position:absolute;z-index:2;pointer-events:none}
+.pc-bt{top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#00f0ff,#8b5cf6,transparent);animation:pcBorderH 4s ease-in-out infinite}
+.pc-bb{bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#a855f7,#00f0ff,transparent);animation:pcBorderH 4s ease-in-out infinite 2s}
+.pc-bl{top:0;bottom:0;left:0;width:2px;background:linear-gradient(to bottom,transparent,#8b5cf6,#00f0ff,transparent);animation:pcBorderV 4s ease-in-out infinite 1s}
+.pc-br{top:0;bottom:0;right:0;width:2px;background:linear-gradient(to bottom,transparent,#00f0ff,#8b5cf6,transparent);animation:pcBorderV 4s ease-in-out infinite 3s}
+
+/* Accent corners */
+.pc-co{position:absolute;width:14px;height:14px;z-index:3;pointer-events:none}
+.pc-co.tl{top:0;left:0;border-top:2px solid #00f0ff;border-left:2px solid #00f0ff;border-radius:2px 0 0 0}
+.pc-co.tr{top:0;right:0;border-top:2px solid #8b5cf6;border-right:2px solid #8b5cf6;border-radius:0 2px 0 0}
+.pc-co.bl{bottom:0;left:0;border-bottom:2px solid #8b5cf6;border-left:2px solid #8b5cf6;border-radius:0 0 0 2px}
+.pc-co.br{bottom:0;right:0;border-bottom:2px solid #00f0ff;border-right:2px solid #00f0ff;border-radius:0 0 2px 0}
+
+/* Holographic header */
+.pc-head{position:relative;margin:0 -1.5rem;padding:1.1rem 1.5rem .85rem;background:linear-gradient(135deg,rgba(0,240,255,.07),rgba(139,92,246,.1),rgba(0,240,255,.05));border-bottom:1px solid rgba(0,240,255,.12);overflow:hidden}
+.pc-head-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(0,240,255,.15) 0%,transparent 70%);animation:pcGlow 3s ease-in-out infinite}
+.pc-head-inner{position:relative;z-index:1;display:flex;align-items:center;gap:.75rem}
+.pc-icon{width:38px;height:38px;border-radius:9px;flex-shrink:0;font-size:18px;background:linear-gradient(135deg,rgba(0,240,255,.18),rgba(139,92,246,.28));border:1px solid rgba(0,240,255,.28);display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0,240,255,.18)}
+.pc-title-col{flex:1;min-width:0}
+.pc-name{font-size:1rem;font-weight:700;margin:0;background:linear-gradient(90deg,#fff 0%,#a5f3fc 50%,#c4b5fd 100%);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pcShimmer 4s linear infinite;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-badges{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
+.pc-status-live{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:#22c55e;text-transform:uppercase;letter-spacing:.5px}
+.pc-status-completed{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.4);color:#60a5fa;text-transform:uppercase;letter-spacing:.5px}
+.pc-status-active{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:#22c55e;text-transform:uppercase;letter-spacing:.5px}
+.pc-status-inprogress{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);color:#fbbf24;text-transform:uppercase;letter-spacing:.5px}
+.pc-status-dev{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);color:#c084fc;text-transform:uppercase;letter-spacing:.5px}
+.pc-live-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pcLive 1.8s ease-in-out infinite;flex-shrink:0}
+
+/* Description */
+.pc-desc{color:#94a3b8;font-size:.82rem;line-height:1.55;margin-top:.85rem}
+
+/* Tech tags */
+.pc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.pc-tag{padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.28);color:#c4b5fd}
+
+/* Feature boxes */
+.pc-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem;margin-top:.75rem}
+.pc-feat{display:flex;align-items:center;gap:6px;padding:.45rem .65rem;border-radius:7px;background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.15);font-size:.74rem;color:#cbd5e1;font-weight:500;transition:all .2s ease;animation:pcFeatPop .5s ease both}
+.pc-feat:nth-child(1){animation-delay:.03s}.pc-feat:nth-child(2){animation-delay:.06s}.pc-feat:nth-child(3){animation-delay:.09s}.pc-feat:nth-child(4){animation-delay:.12s}
+.pc-feat:hover{background:rgba(139,92,246,.15);border-color:rgba(139,92,246,.38);color:#e2e8f0;transform:translateX(3px);box-shadow:-3px 0 0 0 #8b5cf6}
+.pc-feat-ico{font-size:13px;flex-shrink:0}
+
+/* CTA buttons */
+.pc-cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:6px;padding:.45rem 1rem;border-radius:7px;font-size:.76rem;font-weight:600;background:linear-gradient(135deg,#00c8ff,#8b5cf6);color:#fff;text-decoration:none;border:none;cursor:pointer;box-shadow:0 0 14px rgba(0,240,255,.28);transition:transform .2s,box-shadow .2s}
+.pc-cta::after{content:"";position:absolute;top:-50%;width:28%;height:200%;background:rgba(255,255,255,.18);transform:skewX(-20deg);animation:pcCtaSheen 2.5s ease-in-out infinite}
+.pc-cta:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(0,240,255,.45),0 6px 18px rgba(0,0,0,.3)}
+.pc-ghost{display:inline-flex;align-items:center;gap:6px;padding:.45rem .9rem;border-radius:7px;font-size:.76rem;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:#94a3b8;text-decoration:none;transition:all .2s ease}
+.pc-ghost:hover{background:rgba(255,255,255,.1);color:#e2e8f0;border-color:rgba(255,255,255,.24);transform:translateY(-2px)}
+.pc-footer{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+
+/* ── CERT CARD SYSTEM ── */
+.cc-card{
+  position:relative;
+  background:linear-gradient(135deg,rgba(10,10,30,.92) 0%,rgba(20,10,45,.9) 100%);
+  border:1px solid rgba(139,92,246,.22);
+  border-radius:1rem;
+  padding:1.5rem;
+  overflow:hidden;
+  transition:transform .35s ease,box-shadow .35s ease;
+  box-shadow:0 0 0 1px rgba(139,92,246,.1),0 8px 40px rgba(0,0,0,.5);
+  animation:pcCertPop .5s ease both;
+}
+.cc-card:hover{transform:translateY(-5px);box-shadow:0 0 0 1px rgba(0,240,255,.25),0 16px 50px rgba(139,92,246,.2)}
+.cc-bt,.cc-bb,.cc-bl,.cc-br{position:absolute;z-index:2;pointer-events:none}
+.cc-bt{top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#00f0ff,#8b5cf6,transparent);animation:pcBorderH 4s ease-in-out infinite}
+.cc-bb{bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#a855f7,#00f0ff,transparent);animation:pcBorderH 4s ease-in-out infinite 2s}
+.cc-bl{top:0;bottom:0;left:0;width:2px;background:linear-gradient(to bottom,transparent,#8b5cf6,#00f0ff,transparent);animation:pcBorderV 4s ease-in-out infinite 1s}
+.cc-br{top:0;bottom:0;right:0;width:2px;background:linear-gradient(to bottom,transparent,#00f0ff,#8b5cf6,transparent);animation:pcBorderV 4s ease-in-out infinite 3s}
+.cc-co{position:absolute;width:12px;height:12px;z-index:3;pointer-events:none}
+.cc-co.tl{top:0;left:0;border-top:2px solid #00f0ff;border-left:2px solid #00f0ff;border-radius:2px 0 0 0}
+.cc-co.tr{top:0;right:0;border-top:2px solid #8b5cf6;border-right:2px solid #8b5cf6;border-radius:0 2px 0 0}
+.cc-co.bl{bottom:0;left:0;border-bottom:2px solid #8b5cf6;border-left:2px solid #8b5cf6;border-radius:0 0 0 2px}
+.cc-co.br{bottom:0;right:0;border-bottom:2px solid #00f0ff;border-right:2px solid #00f0ff;border-radius:0 0 2px 0}
+.cc-orb-wrap{display:flex;justify-content:center;margin-bottom:.85rem}
+.cc-orb{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,#00f0ff,#8b5cf6);
+  box-shadow:0 0 20px rgba(0,240,255,.4),0 0 40px rgba(139,92,246,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;position:relative;
+}
+.cc-orb::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px dashed rgba(0,240,255,.35);animation:pcCertSpin 8s linear infinite}
+.cc-title{font-size:.92rem;font-weight:700;text-align:center;margin-bottom:.3rem;background:linear-gradient(90deg,#fff 0%,#a5f3fc 60%,#c4b5fd 100%);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pcShimmer 4s linear infinite;line-height:1.3}
+.cc-sub{color:#94a3b8;font-size:.78rem;text-align:center;margin-bottom:.5rem}
+.cc-year{display:inline-flex;align-items:center;justify-content:center;margin:0 auto .85rem;padding:2px 10px;border-radius:20px;font-size:.7rem;font-weight:700;color:#00f0ff;background:rgba(0,240,255,.08);border:1px solid rgba(0,240,255,.22);letter-spacing:.5px;animation:pcBadgePulse 2.5s ease-in-out infinite}
+.cc-verify{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:.5rem;border-radius:8px;font-size:.76rem;font-weight:600;background:linear-gradient(135deg,rgba(0,240,255,.1),rgba(139,92,246,.15));border:1px solid rgba(0,240,255,.25);color:#a5f3fc;cursor:pointer;transition:all .2s ease;position:relative;overflow:hidden}
+.cc-verify::after{content:"";position:absolute;top:-50%;width:28%;height:200%;background:rgba(255,255,255,.12);transform:skewX(-20deg);animation:pcCtaSheen 3s ease-in-out infinite}
+.cc-verify:hover{background:linear-gradient(135deg,rgba(0,240,255,.2),rgba(139,92,246,.25));color:#fff;transform:translateY(-2px);box-shadow:0 0 16px rgba(0,240,255,.25)}
+</style>
+                            <!-- WebMitra -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F310;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">WebMitra</div>
+                                            <div class="pc-badges"><span class="pc-status-live">LIVE</span><div class="pc-live-dot"></div></div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Description -->
-                                <p class="project-description" style="margin-top:1rem;">
-                                    AI-powered placement preparation OS &mdash; structured DSA practice,
-                                    interview training, and real-time progress tracking for aspiring developers.
-                                </p>
-
-                                <!-- Stat Boxes -->
-                                <div class="pt-stats">
-                                    <div class="pt-stat-box">
-                                        <span class="pt-stat-num">500+</span>
-                                        <span class="pt-stat-lbl">DSA Problems</span>
-                                    </div>
-                                    <div class="pt-stat-box">
-                                        <span class="pt-stat-num">50+</span>
-                                        <span class="pt-stat-lbl">Interview Q&amp;A</span>
-                                    </div>
-                                    <div class="pt-stat-box">
-                                        <span class="pt-stat-num">AI</span>
-                                        <span class="pt-stat-lbl">Powered</span>
-                                    </div>
-                                </div>
-
-                                <!-- Tech tags -->
-                                <div class="project-tech" style="margin-top:1rem;">
-                                    <span class="tech-tag">MERN Stack</span>
-                                    <span class="tech-tag">AI Integration</span>
-                                    <span class="tech-tag">Tailwind CSS</span>
-                                    <span class="tech-tag">Node.js</span>
-                                </div>
-
-                                <!-- Feature boxes -->
-                                <div class="pt-feat-grid">
-                                    <div class="pt-feat-box"><span class="pt-feat-icon">&#x1F9E0;</span><span>DSA Practice</span></div>
-                                    <div class="pt-feat-box"><span class="pt-feat-icon">&#x1F3AF;</span><span>Interview Prep</span></div>
-                                    <div class="pt-feat-box"><span class="pt-feat-icon">&#x1F4CA;</span><span>Progress Track</span></div>
-                                    <div class="pt-feat-box"><span class="pt-feat-icon">&#x1F916;</span><span>AI Insights</span></div>
-                                </div>
-
-                                <!-- Upcoming -->
-                                <div class="pt-upcoming">
-                                    <span class="pt-upcoming-lbl">&#x26A1; Coming Soon</span>
-                                    AI Mock Interviews &nbsp;&middot;&nbsp; Resume Analyzer &nbsp;&middot;&nbsp; Smart Analytics
-                                </div>
-
-                                <!-- CTA -->
-                                <div class="project-footer" style="margin-top:1.25rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
-                                    <a href="https://preptrackos.vercel.app/" target="_blank" class="pt-cta-btn">
-                                        <i data-lucide="external-link" style="width:14px;height:14px;"></i>
-                                        Launch App
-                                    </a>
-                                    <a href="https://github.com/Binay8392" target="_blank" class="pt-cta-ghost">
-                                        <i data-lucide="github" style="width:14px;height:14px;"></i>
-                                        GitHub
-                                    </a>
-                                </div>
+                                <p class="pc-desc">Service-based platform helping small businesses and individuals build their online presence with modern, responsive websites.</p>
+                                <div class="pc-tags"><span class="pc-tag">MERN Stack</span><span class="pc-tag">Full Stack</span><span class="pc-tag">React</span><span class="pc-tag">Node.js</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F3A8;</span><span>Modern UI</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4F1;</span><span>Responsive Design</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x26A1;</span><span>Fast Loading</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F510;</span><span>Secure</span></div></div>
+                                <div class="pc-footer"><a href="https://webmitra.bookontime.shop/" target="_blank" class="pc-cta"><i data-lucide="globe" style="width:13px;height:13px;"></i>Visit Website</a></div>
                             </div>
-
-                            <!-- WebMitra -->
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>WebMitra</h3>
-                                    <span class="project-status live">Live</span>
-                                </div>
-                                <p class="project-description">Service-based platform helping small businesses and
-                                    individuals build their online presence with modern, responsive websites.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">MERN Stack</span>
-                                    <span class="tech-tag">Full Stack</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Modern UI</span></div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Responsive Design</span>
-                                    </div>
-                                </div>
-                                <div class="project-footer" style="margin-top: 1.5rem;">
-                                    <a href="https://webmitra.bookontime.shop/" target="_blank" class="btn-primary"
-                                        style="padding: 0.5rem 1rem; font-size: 0.8rem; width: fit-content;">
-                                        <i data-lucide="globe"></i> Visit Website
-                                    </a>
-                                </div>
-                            </div>
-
                             <!-- MindWell -->
-                            <div class="project-card calm-card">
-                                <div class="project-header">
-                                    <h3>MindWell</h3>
-                                    <span class="project-status live">Live</span>
-                                </div>
-                                <p class="project-description">Mental wellness and self-growth application focused on
-                                    emotional health tracking and self-reflection.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">Modern UI</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Mood Tracking</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Self Reflection</span>
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F9E0;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">MindWell</div>
+                                            <div class="pc-badges"><span class="pc-status-live">LIVE</span><div class="pc-live-dot"></div></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="project-footer" style="margin-top: 1.5rem;">
-                                    <a href="https://mymindwell-83.vercel.app/" target="_blank" class="btn-primary"
-                                        style="padding: 0.5rem 1rem; font-size: 0.8rem; width: fit-content;">
-                                        <i data-lucide="heart"></i> Live Demo
-                                    </a>
-                                </div>
+                                <p class="pc-desc">Mental wellness and self-growth application focused on emotional health tracking and self-reflection.</p>
+                                <div class="pc-tags"><span class="pc-tag">React</span><span class="pc-tag">Modern UI</span><span class="pc-tag">Firebase</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Mood Tracking</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4D3;</span><span>Self Reflection</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F91D;</span><span>Community</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F512;</span><span>Privacy</span></div></div>
+                                <div class="pc-footer"><a href="https://mymindwell-83.vercel.app/" target="_blank" class="pc-cta"><i data-lucide="heart" style="width:13px;height:13px;"></i>Live Demo</a></div>
                             </div>
-
-                            <!-- Hardware/ML Projects (Completed) -->
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Ultra Sonic Radar</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Hardware radar system using ultrasonic sensors to detect
-                                    and visualize objects for robotics and security applications.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Arduino</span>
-                                    <span class="tech-tag">Sensors</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Obstacle Detection</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Real-Time Scanning</span>
+                            <!-- Ultra Sonic Radar -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F4E1;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Ultra Sonic Radar</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="pc-desc">Hardware radar system using ultrasonic sensors to detect and visualize objects for robotics and security applications.</p>
+                                <div class="pc-tags"><span class="pc-tag">Arduino</span><span class="pc-tag">Sensors</span><span class="pc-tag">C++</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F50D;</span><span>Obstacle Detection</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x23F1;</span><span>Real-Time Scanning</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F916;</span><span>Robotics</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F6E1;</span><span>Security</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Automatic Fire Fighting Robot</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Autonomous robot equipped to detect and extinguish fires
-                                    in hazardous environments.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Robotics</span>
-                                    <span class="tech-tag">Sensors</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Fire Detection</span>
+                            <!-- Automatic Fire Fighting Robot -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F692;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Automatic Fire Fighting Robot</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Autonomous
-                                            Navigation</span></div>
                                 </div>
+                                <p class="pc-desc">Autonomous robot equipped to detect and extinguish fires in hazardous environments.</p>
+                                <div class="pc-tags"><span class="pc-tag">Robotics</span><span class="pc-tag">Sensors</span><span class="pc-tag">Arduino</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F525;</span><span>Fire Detection</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F9ED;</span><span>Autonomous Nav</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x26A1;</span><span>Fast Response</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F6A8;</span><span>Safety Alert</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Automatic Street Light</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Smart lighting system automating street lights based on
-                                    ambient brightness and motion detection.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">IoT</span>
-                                    <span class="tech-tag">Sensors</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Motion Detection</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Energy Saving</span>
+                            <!-- Automatic Street Light -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F4A1;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Automatic Street Light</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="pc-desc">Smart lighting system automating street lights based on ambient brightness and motion detection.</p>
+                                <div class="pc-tags"><span class="pc-tag">IoT</span><span class="pc-tag">Sensors</span><span class="pc-tag">Arduino</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F3C3;</span><span>Motion Detection</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F50B;</span><span>Energy Saving</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4F6;</span><span>Smart Control</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Analytics</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Traffic Light Detection and Negotiation in Unreal Engine (MATLAB)</h3>
-                                    <span class="project-status completed">Completed</span>
+                            <!-- Traffic Light Detection and Negotiation in Unreal Engine (MATLAB) -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F6A6;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Traffic Light Detection (Unreal/MATLAB)</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p class="project-description">Simulated traffic light detection and negotiation for
-                                    autonomous vehicles, leveraging MATLAB and Unreal Engine integration.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">MATLAB</span>
-                                    <span class="tech-tag">Unreal Engine</span>
-                                    <span class="tech-tag">Computer Vision</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Simulation</span></div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Autonomous
-                                            Navigation</span></div>
-                                </div>
+                                <p class="pc-desc">Simulated traffic light detection and negotiation for autonomous vehicles, leveraging MATLAB and Unreal Engine integration.</p>
+                                <div class="pc-tags"><span class="pc-tag">MATLAB</span><span class="pc-tag">Unreal Engine</span><span class="pc-tag">Computer Vision</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F3AE;</span><span>Simulation</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F697;</span><span>Autonomous Nav</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F441;</span><span>CV Detection</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4C8;</span><span>Analysis</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>SDG Quiz Website with Chatbot</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Interactive quiz web platform on Sustainable Development
-                                    Goals, featuring a supportive AI chatbot for guidance.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">Node.js</span>
-                                    <span class="tech-tag">AI Chatbot</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Dynamic Quizzes</span>
+                            <!-- SDG Quiz Website with Chatbot -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F30D;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">SDG Quiz Website with Chatbot</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>AI Assistant</span></div>
                                 </div>
+                                <p class="pc-desc">Interactive quiz web platform on Sustainable Development Goals, featuring a supportive AI chatbot for guidance.</p>
+                                <div class="pc-tags"><span class="pc-tag">React</span><span class="pc-tag">Node.js</span><span class="pc-tag">AI Chatbot</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x2753;</span><span>Dynamic Quizzes</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F916;</span><span>AI Assistant</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Progress Track</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F310;</span><span>Web Platform</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Fake News Detection using NLP/AI/ML</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Automated system detecting fake news articles using
-                                    natural language processing and machine learning classification models.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">NLP</span>
-                                    <span class="tech-tag">AI/ML</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Text Analysis</span>
+                            <!-- Fake News Detection using NLP/AI/ML -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F4F0;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Fake News Detection (NLP/AI/ML)</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Fake News
-                                            Classification</span></div>
                                 </div>
+                                <p class="pc-desc">Automated system detecting fake news articles using natural language processing and machine learning classification models.</p>
+                                <div class="pc-tags"><span class="pc-tag">Python</span><span class="pc-tag">NLP</span><span class="pc-tag">AI/ML</span><span class="pc-tag">TensorFlow</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F50E;</span><span>Text Analysis</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x274C;</span><span>Fake Classification</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F9E0;</span><span>NLP Model</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4C8;</span><span>Accuracy</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Tic Tac Toe (OOPs Java)</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Classic Tic Tac Toe game implemented using
-                                    object-oriented principles in Java.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Java</span>
-                                    <span class="tech-tag">OOP</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Game Logic</span></div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>User Interface</span>
+                            <!-- Tic Tac Toe (OOPs Java) -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F3AE;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Tic Tac Toe (OOP Java)</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="pc-desc">Classic Tic Tac Toe game implemented using object-oriented principles in Java.</p>
+                                <div class="pc-tags"><span class="pc-tag">Java</span><span class="pc-tag">OOP</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F9E0;</span><span>Game Logic</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F5A5;</span><span>User Interface</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F3C6;</span><span>Win Detection</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F504;</span><span>Replay</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>House Price Prediction</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Machine learning model predicting house prices using
-                                    advanced data analytics techniques.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">Data Analytics</span>
-                                    <span class="tech-tag">ML</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Price Prediction</span>
+                            <!-- House Price Prediction -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F3E0;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">House Price Prediction</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Feature
-                                            Engineering</span></div>
                                 </div>
+                                <p class="pc-desc">Machine learning model predicting house prices using advanced data analytics and regression techniques.</p>
+                                <div class="pc-tags"><span class="pc-tag">Python</span><span class="pc-tag">Data Analytics</span><span class="pc-tag">ML</span><span class="pc-tag">Scikit-learn</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F4B0;</span><span>Price Prediction</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F527;</span><span>Feature Engineering</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Data Viz</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F9EA;</span><span>Model Testing</span></div></div>
+                                
                             </div>
-
-                            <!-- Retained & New Projects (mixed statuses) -->
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>E-Commerce Platform</h3>
-                                    <span class="project-status active">Active</span>
-                                </div>
-                                <p class="project-description">Full-stack MERN application with advanced features like
-                                    real-time inventory management, payment integration, and AI-powered product
-                                    recommendations.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">Node.js</span>
-                                    <span class="tech-tag">MongoDB</span>
-                                    <span class="tech-tag">AI/ML</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Real-time
-                                            Inventory</span></div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Payment Gateway</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>AI Recommendations</span>
+                            <!-- E-Commerce Platform -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F6D2;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">E-Commerce Platform</div>
+                                            <div class="pc-badges"><span class="pc-status-active">ACTIVE</span><div class="pc-live-dot"></div></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="pc-desc">Full-stack MERN application with real-time inventory management, payment integration, and AI-powered product recommendations.</p>
+                                <div class="pc-tags"><span class="pc-tag">React</span><span class="pc-tag">Node.js</span><span class="pc-tag">MongoDB</span><span class="pc-tag">AI/ML</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F4E6;</span><span>Real-time Inventory</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4B3;</span><span>Payment Gateway</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F916;</span><span>AI Recommendations</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Analytics</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>IoT Home Automation</h3>
-                                    <span class="project-status completed">Completed</span>
-                                </div>
-                                <p class="project-description">Smart home system using Arduino, Raspberry Pi, and cloud
-                                    integration for remote monitoring and control of home appliances.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Arduino</span>
-                                    <span class="tech-tag">Raspberry Pi</span>
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">Firebase</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Remote Control</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Real-time
-                                            Monitoring</span></div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Energy Analytics</span>
+                            <!-- IoT Home Automation -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F3E0;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">IoT Home Automation</div>
+                                            <div class="pc-badges"><span class="pc-status-completed">COMPLETED</span></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="pc-desc">Smart home system using Arduino, Raspberry Pi, and cloud integration for remote monitoring and control of home appliances.</p>
+                                <div class="pc-tags"><span class="pc-tag">Arduino</span><span class="pc-tag">Raspberry Pi</span><span class="pc-tag">React</span><span class="pc-tag">Firebase</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F4F1;</span><span>Remote Control</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Real-time Monitor</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x26A1;</span><span>Energy Analytics</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F517;</span><span>Cloud Sync</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>AI Chat Application</h3>
-                                    <span class="project-status in-progress">In Progress</span>
-                                </div>
-                                <p class="project-description">Advanced chatbot with natural language processing,
-                                    sentiment analysis, and integration with multiple AI models for comprehensive
-                                    responses.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">TensorFlow</span>
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">WebSockets</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>NLP Processing</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Sentiment Analysis</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Multi-Model AI</span>
+                            <!-- AI Chat Application -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F4AC;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">AI Chat Application</div>
+                                            <div class="pc-badges"><span class="pc-status-inprogress">IN PROGRESS</span></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="pc-desc">Advanced chatbot with NLP, sentiment analysis, and integration with multiple AI models for comprehensive responses.</p>
+                                <div class="pc-tags"><span class="pc-tag">Python</span><span class="pc-tag">TensorFlow</span><span class="pc-tag">React</span><span class="pc-tag">WebSockets</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F9E0;</span><span>NLP Processing</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F604;</span><span>Sentiment Analysis</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F916;</span><span>Multi-Model AI</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x26A1;</span><span>Real-time</span></div></div>
+                                
                             </div>
-
-                            <!-- Additional New Projects -->
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Online Election System</h3>
-                                    <span class="project-status in-development">In Development</span>
-                                </div>
-                                <p class="project-description">A comprehensive voting platform with secure
-                                    authentication, real-time results, and administrative dashboard.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">React.js</span>
-                                    <span class="tech-tag">Node.js</span>
-                                    <span class="tech-tag">MongoDB</span>
-                                    <span class="tech-tag">JWT</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Secure Voting</span>
+                            <!-- Online Election System -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F5F3;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Online Election System</div>
+                                            <div class="pc-badges"><span class="pc-status-dev">IN DEVELOPMENT</span></div>
+                                        </div>
                                     </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Real-time Results</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Admin Panel</span></div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>User
-                                            Authentication</span></div>
                                 </div>
+                                <p class="pc-desc">Comprehensive voting platform with secure authentication, real-time results, and administrative dashboard.</p>
+                                <div class="pc-tags"><span class="pc-tag">React.js</span><span class="pc-tag">Node.js</span><span class="pc-tag">MongoDB</span><span class="pc-tag">JWT</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F510;</span><span>Secure Voting</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Real-time Results</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4BC;</span><span>Admin Panel</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F464;</span><span>User Auth</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>Smart Library Management System</h3>
-                                    <span class="project-status in-development">In Development</span>
-                                </div>
-                                <p class="project-description">IoT-enabled library system with automated book tracking,
-                                    user management, and analytics dashboard.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">IoT</span>
-                                    <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">Flask</span>
-                                    <span class="tech-tag">SQLite</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>IoT Integration</span>
+                            <!-- Smart Library Management System -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F4DA;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">Smart Library Management System</div>
+                                            <div class="pc-badges"><span class="pc-status-dev">IN DEVELOPMENT</span></div>
+                                        </div>
                                     </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Book Tracking</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>User Management</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Analytics</span></div>
                                 </div>
+                                <p class="pc-desc">IoT-enabled library system with automated book tracking, user management, and analytics dashboard.</p>
+                                <div class="pc-tags"><span class="pc-tag">IoT</span><span class="pc-tag">Python</span><span class="pc-tag">Flask</span><span class="pc-tag">SQLite</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F4F6;</span><span>IoT Integration</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4D6;</span><span>Book Tracking</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F464;</span><span>User Management</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CA;</span><span>Analytics</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>AI Mental Health Therapist Chatbot</h3>
-                                    <span class="project-status in-development">In Development</span>
-                                </div>
-                                <p class="project-description">Gen AI + NLP powered chatbot providing mental health
-                                    support through intelligent conversations.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">NLP</span>
-                                    <span class="tech-tag">TensorFlow</span>
-                                    <span class="tech-tag">Flask API</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>NLP Processing</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Emotional Analysis</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>24/7 Support</span></div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Privacy Focused</span>
+                            <!-- AI Mental Health Therapist Chatbot -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F9E0;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">AI Mental Health Therapist Chatbot</div>
+                                            <div class="pc-badges"><span class="pc-status-dev">IN DEVELOPMENT</span></div>
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="pc-desc">Gen AI + NLP powered chatbot providing mental health support through intelligent conversations.</p>
+                                <div class="pc-tags"><span class="pc-tag">Python</span><span class="pc-tag">NLP</span><span class="pc-tag">TensorFlow</span><span class="pc-tag">Flask API</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F9E0;</span><span>NLP Processing</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F497;</span><span>Emotional Analysis</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F551;</span><span>24/7 Support</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F512;</span><span>Privacy Focused</span></div></div>
+                                
                             </div>
-
-                            <div class="project-card">
-                                <div class="project-header">
-                                    <h3>AutoGuard AI – Smart Accident Detection & Emergency Alert System</h3>
-                                    <span class="project-status live">Live</span>
-                                </div>
-                                <p class="project-description">IoT + AI based system that detects vehicle crashes using
-                                    sensors and automatically alerts nearby hospitals and emergency contacts.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">AI/ML</span>
-                                    <span class="tech-tag">IoT</span>
-                                    <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">GPS</span>
-                                </div>
-                                <div class="project-features">
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Crash Detection</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Emergency Alert</span>
-                                    </div>
-                                    <div class="feature-item"><i data-lucide="check"></i><span>Hospital Connect</span>
+                            <!-- AutoGuard AI -->
+                            <div class="project-card pc-card">
+                                <div class="pc-bt"></div><div class="pc-bb"></div><div class="pc-bl"></div><div class="pc-br"></div>
+                                <div class="pc-co tl"></div><div class="pc-co tr"></div><div class="pc-co bl"></div><div class="pc-co br"></div>
+                                <div class="pc-head">
+                                    <div class="pc-head-glow"></div>
+                                    <div class="pc-head-inner">
+                                        <div class="pc-icon">&#x1F6A8;</div>
+                                        <div class="pc-title-col">
+                                            <div class="pc-name">AutoGuard AI – Smart Accident Detection</div>
+                                            <div class="pc-badges"><span class="pc-status-live">LIVE</span><div class="pc-live-dot"></div></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="project-footer" style="margin-top: 1.5rem;">
-                                    <a href="https://binay8392.github.io/AutoGuard-AI/" target="_blank"
-                                        class="btn-primary"
-                                        style="padding: 0.5rem 1rem; font-size: 0.8rem; width: fit-content;">
-                                        <i data-lucide="eye"></i> View Project
-                                    </a>
-                                </div>
+                                <p class="pc-desc">IoT + AI based system that detects vehicle crashes using sensors and automatically alerts nearby hospitals and emergency contacts.</p>
+                                <div class="pc-tags"><span class="pc-tag">AI/ML</span><span class="pc-tag">IoT</span><span class="pc-tag">Python</span><span class="pc-tag">GPS</span></div>
+                                <div class="pc-feats"><div class="pc-feat"><span class="pc-feat-ico">&#x1F4A5;</span><span>Crash Detection</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F6A8;</span><span>Emergency Alert</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F3E5;</span><span>Hospital Connect</span></div><div class="pc-feat"><span class="pc-feat-ico">&#x1F4CD;</span><span>GPS Tracking</span></div></div>
+                                <div class="pc-footer"><a href="https://binay8392.github.io/AutoGuard-AI/" target="_blank" class="pc-cta"><i data-lucide="eye" style="width:13px;height:13px;"></i>View Project</a></div>
                             </div>
                         </div>
                     </div>
@@ -788,88 +648,70 @@
                     <!-- Certifications Tab -->
                     <div class="tab-content" id="certifications">
                         <div class="certifications-grid">
-                            <div class="cert-card">
-                                <div class="cert-icon">
-                                    <i data-lucide="award"></i>
-                                </div>
-                                <h3>The Chinese University of Hong Kong </h3>
-                                <h3> 香港中文大學 </h3>
-                                <p>Information Theory (Coursera)</p>
-                                <div class="cert-date">2024</div>
-                                <button class="verify-btn"
-                                    onclick="window.open('https://www.coursera.org/account/accomplishments/verify/SE3GC4P0XI2Q', '_blank')">
-                                    <i data-lucide="external-link"></i>
-                                    Verify
+                            <div class="cc-card" style="animation-delay:0.00s">
+                                <div class="cc-bt"></div><div class="cc-bb"></div><div class="cc-bl"></div><div class="cc-br"></div>
+                                <div class="cc-co tl"></div><div class="cc-co tr"></div><div class="cc-co bl"></div><div class="cc-co br"></div>
+                                <div class="cc-orb-wrap"><div class="cc-orb">&#x1F3C6;</div></div>
+                                <div class="cc-title">The Chinese University of Hong Kong 香港中文大學</div>
+                                <div class="cc-sub">Information Theory (Coursera)</div>
+                                <div style="display:flex;justify-content:center"><div class="cc-year">2024</div></div>
+                                <button class="cc-verify" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/SE3GC4P0XI2Q','_blank')">
+                                    <i data-lucide="external-link" style="width:13px;height:13px;"></i> Verify Certificate
                                 </button>
                             </div>
-
-                            <div class="cert-card">
-                                <div class="cert-icon">
-                                    <i data-lucide="brain"></i>
-                                </div>
-                                <h3>IBM</h3>
-                                <p> Machine Learning with Python(Coursera)</p>
-                                <div class="cert-date">2024</div>
-                                <button class="verify-btn"
-                                    onclick="window.open('https://www.coursera.org/account/accomplishments/verify/Y3OAKHM7WUHM', '_blank')">
-                                    <i data-lucide="external-link"></i>
-                                    Verify
+                            <div class="cc-card" style="animation-delay:0.07s">
+                                <div class="cc-bt"></div><div class="cc-bb"></div><div class="cc-bl"></div><div class="cc-br"></div>
+                                <div class="cc-co tl"></div><div class="cc-co tr"></div><div class="cc-co bl"></div><div class="cc-co br"></div>
+                                <div class="cc-orb-wrap"><div class="cc-orb">&#x1F9E0;</div></div>
+                                <div class="cc-title">IBM</div>
+                                <div class="cc-sub">Machine Learning with Python (Coursera)</div>
+                                <div style="display:flex;justify-content:center"><div class="cc-year">2024</div></div>
+                                <button class="cc-verify" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/Y3OAKHM7WUHM','_blank')">
+                                    <i data-lucide="external-link" style="width:13px;height:13px;"></i> Verify Certificate
                                 </button>
                             </div>
-
-                            <div class="cert-card">
-                                <div class="cert-icon">
-                                    <i data-lucide="code"></i>
-                                </div>
-                                <h3>Deep Learning Specialization</h3>
-                                <p>deeplearning.ai (Coursera)</p>
-                                <div class="cert-date">2024</div>
-                                <button class="verify-btn"
-                                    onclick="window.open('https://www.coursera.org/account/accomplishments/verify/F9EX9NBR8WCN', '_blank')">
-                                    <i data-lucide="external-link"></i>
-                                    Verify
+                            <div class="cc-card" style="animation-delay:0.14s">
+                                <div class="cc-bt"></div><div class="cc-bb"></div><div class="cc-bl"></div><div class="cc-br"></div>
+                                <div class="cc-co tl"></div><div class="cc-co tr"></div><div class="cc-co bl"></div><div class="cc-co br"></div>
+                                <div class="cc-orb-wrap"><div class="cc-orb">&#x1F4BB;</div></div>
+                                <div class="cc-title">Deep Learning Specialization</div>
+                                <div class="cc-sub">deeplearning.ai (Coursera)</div>
+                                <div style="display:flex;justify-content:center"><div class="cc-year">2024</div></div>
+                                <button class="cc-verify" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/F9EX9NBR8WCN','_blank')">
+                                    <i data-lucide="external-link" style="width:13px;height:13px;"></i> Verify Certificate
                                 </button>
                             </div>
-
-                            <div class="cert-card">
-                                <div class="cert-icon">
-                                    <i data-lucide="cpu"></i>
-                                </div>
-                                <h3>DSA in c++ // DEcode 2.0</h3>
-                                <p>PW Skills</p>
-                                <div class="cert-date">2024</div>
-                                <button class="verify-btn"
-                                    onclick="window.open('https://pwskills.com/learn/certificate/223fa91c-9480-45f4-8b31-ff96742f83cb/', '_blank')">
-                                    <i data-lucide="external-link"></i>
-                                    Verify
+                            <div class="cc-card" style="animation-delay:0.21s">
+                                <div class="cc-bt"></div><div class="cc-bb"></div><div class="cc-bl"></div><div class="cc-br"></div>
+                                <div class="cc-co tl"></div><div class="cc-co tr"></div><div class="cc-co bl"></div><div class="cc-co br"></div>
+                                <div class="cc-orb-wrap"><div class="cc-orb">&#x26A1;</div></div>
+                                <div class="cc-title">DSA in C++ // DEcode 2.0</div>
+                                <div class="cc-sub">PW Skills</div>
+                                <div style="display:flex;justify-content:center"><div class="cc-year">2024</div></div>
+                                <button class="cc-verify" onclick="window.open('https://pwskills.com/learn/certificate/223fa91c-9480-45f4-8b31-ff96742f83cb/','_blank')">
+                                    <i data-lucide="external-link" style="width:13px;height:13px;"></i> Verify Certificate
                                 </button>
                             </div>
-
-                            <div class="cert-card">
-                                <div class="cert-icon">
-                                    <i data-lucide="book"></i>
-                                </div>
-                                <h3>Advanced System Security Topics</h3>
-                                <p>University of Colorado (Coursera)</p>
-                                <div class="cert-date">2024</div>
-                                <button class="verify-btn"
-                                    onclick="window.open('https://www.coursera.org/account/accomplishments/verify/F9EX9NBR8WCN', '_blank')">
-                                    <i data-lucide="external-link"></i>
-                                    Verify
+                            <div class="cc-card" style="animation-delay:0.28s">
+                                <div class="cc-bt"></div><div class="cc-bb"></div><div class="cc-bl"></div><div class="cc-br"></div>
+                                <div class="cc-co tl"></div><div class="cc-co tr"></div><div class="cc-co bl"></div><div class="cc-co br"></div>
+                                <div class="cc-orb-wrap"><div class="cc-orb">&#x1F512;</div></div>
+                                <div class="cc-title">Advanced System Security Topics</div>
+                                <div class="cc-sub">University of Colorado (Coursera)</div>
+                                <div style="display:flex;justify-content:center"><div class="cc-year">2024</div></div>
+                                <button class="cc-verify" onclick="window.open('https://www.coursera.org/account/accomplishments/verify/F9EX9NBR8WCN','_blank')">
+                                    <i data-lucide="external-link" style="width:13px;height:13px;"></i> Verify Certificate
                                 </button>
                             </div>
-
-                            <div class="cert-card">
-                                <div class="cert-icon">
-                                    <i data-lucide="briefcase"></i>
-                                </div>
-                                <h3>DELLOITE || Cyber Job Simulation</h3>
-                                <p>Forage</p>
-                                <div class="cert-date">2024</div>
-                                <button class="verify-btn"
-                                    onclick="window.open('https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_earCCkYF5jmyiDfrf_1751087625697_completion_certificate.pdf', '_blank')">
-                                    <i data-lucide="external-link"></i>
-                                    Verify
+                            <div class="cc-card" style="animation-delay:0.35s">
+                                <div class="cc-bt"></div><div class="cc-bb"></div><div class="cc-bl"></div><div class="cc-br"></div>
+                                <div class="cc-co tl"></div><div class="cc-co tr"></div><div class="cc-co bl"></div><div class="cc-co br"></div>
+                                <div class="cc-orb-wrap"><div class="cc-orb">&#x1F4BC;</div></div>
+                                <div class="cc-title">DELOITTE || Cyber Job Simulation</div>
+                                <div class="cc-sub">Forage</div>
+                                <div style="display:flex;justify-content:center"><div class="cc-year">2024</div></div>
+                                <button class="cc-verify" onclick="window.open('https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_earCCkYF5jmyiDfrf_1751087625697_completion_certificate.pdf','_blank')">
+                                    <i data-lucide="external-link" style="width:13px;height:13px;"></i> Verify Certificate
                                 </button>
                             </div>
                         </div>
