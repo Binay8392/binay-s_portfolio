@@ -1,5 +1,126 @@
 // Portfolio JavaScript - All Interactive Functionality
 
+function startIntroAnimation() {
+    const overlay = document.getElementById('intro-overlay');
+    const typingText = document.getElementById('typingText');
+    const terminalLogs = document.getElementById('terminalLogs');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const accessGranted = document.getElementById('accessGranted');
+    const matrixRainContainer = document.getElementById('matrixRain');
+
+    if (!overlay) return;
+
+    // 1. Matrix Rain Setup
+    const canvas = document.createElement('canvas');
+    matrixRainContainer.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#8b5cf6';
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = chars.charAt(Math.floor(Math.random() * chars.length));
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i]++;
+        }
+    }
+    const matrixInterval = setInterval(drawMatrix, 50);
+
+    // 2. Terminal Logs Simulation
+    const logs = [
+        "SYSCALL: OPEN PORT 8080...",
+        "AUTH: HANDSHAKE INITIATED",
+        "FETCH: BINAY_DATA_PACKET_01",
+        "SYNC: CLOUD_RELIANCE_ACTIVE",
+        "DEP: REACT_V18_READY",
+        "DEP: NODE_V20_READY",
+        "WARN: QUANTUM_DECOHERENCE_DETECTED",
+        "FIX: APPLYING PARALLEL_HEALING",
+        "MEM: BUFFER_STREAM_STABLE",
+        "LOAD: NEURAL_NETWORK_WEIGHTS",
+        "INIT: IOT_CORE_GATEWAY"
+    ];
+
+    let logCounter = 0;
+    const logInterval = setInterval(() => {
+        const p = document.createElement('p');
+        p.textContent = logs[Math.floor(Math.random() * logs.length)];
+        terminalLogs.appendChild(p);
+        if (terminalLogs.childNodes.length > 50) terminalLogs.removeChild(terminalLogs.firstChild);
+        terminalLogs.scrollTop = terminalLogs.scrollHeight;
+    }, 100);
+
+    // 3. Typing Effect
+    const phrases = [
+        "> INITIALIZING PROTOCOLS...",
+        "> LOADING MERN_STACK_V2.0.1",
+        "> CONNECTING TO AI_MODELS... [OK]",
+        "> SCANNING IOT_NETWORK... [OK]",
+        "> DECRYPTING PORTFOLIO..."
+    ];
+
+    let currentPhrase = 0;
+    let currentChar = 0;
+
+    function type() {
+        if (currentPhrase < phrases.length) {
+            if (currentChar < phrases[currentPhrase].length) {
+                typingText.textContent += phrases[currentPhrase].charAt(currentChar);
+                currentChar++;
+                setTimeout(type, 50);
+            } else {
+                setTimeout(() => {
+                    typingText.textContent = "";
+                    currentChar = 0;
+                    currentPhrase++;
+                    type();
+                }, 1000);
+            }
+        }
+    }
+    type();
+
+    // 4. Progress Bar Synchronization
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+        progress += Math.random() * 2;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(progressInterval);
+            clearInterval(logInterval);
+
+            // Show Access Granted
+            accessGranted.classList.add('show');
+
+            setTimeout(() => {
+                clearInterval(matrixInterval);
+                overlay.classList.add('intro-fade-out');
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    // Initialize Portfolio App if not already
+                    if (!window.portfolioApp) {
+                        window.portfolioApp = new Portfolio();
+                    }
+                }, 1000);
+            }, 1500);
+        }
+        progressBar.style.width = progress + "%";
+        progressText.textContent = Math.floor(progress) + "%";
+    }, 100);
+}
+
 class Portfolio {
     constructor() {
         this.currentTheme = 'dark';
@@ -14,12 +135,10 @@ class Portfolio {
         this.initializeAnimations();
         this.initializeLucideIcons();
         this.handleResize();
-        
-        // Initialize after DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            this.updateThemeColors();
-            this.animateSkillBars();
-        });
+
+        // Initialize theme colors and skill bars
+        this.updateThemeColors();
+        this.animateSkillBars();
     }
 
     setupEventListeners() {
@@ -101,7 +220,7 @@ class Portfolio {
     switchTheme(theme) {
         this.currentTheme = theme;
         document.body.setAttribute('data-theme', theme);
-        
+
         // Update active theme button
         document.querySelectorAll('.theme-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -112,7 +231,7 @@ class Portfolio {
 
         // Save theme preference
         localStorage.setItem('portfolio-theme', theme);
-        
+
         // Update theme colors
         this.updateThemeColors();
     }
@@ -152,7 +271,7 @@ class Portfolio {
         };
 
         const themeColors = themes[this.currentTheme] || themes.dark;
-        
+
         // Update CSS custom properties
         document.documentElement.style.setProperty('--theme-primary', themeColors.primary);
         document.documentElement.style.setProperty('--theme-secondary', themeColors.secondary);
@@ -166,7 +285,7 @@ class Portfolio {
         const animatedBg = document.getElementById('animatedBg');
         const mobileAccent = document.getElementById('mobileAccent');
         const bgPattern = document.getElementById('bgPattern');
-        
+
         if (this.isMobile) {
             if (mobileAccent) {
                 mobileAccent.style.background = `radial-gradient(circle at 50% 50%, ${colors.primary}66 0%, transparent 70%)`;
@@ -176,7 +295,7 @@ class Portfolio {
                 const primaryRgba = this.hexToRgba(colors.primary, 0.3);
                 const secondaryRgba = this.hexToRgba(colors.secondary, 0.3);
                 const accentRgba = this.hexToRgba(colors.accent, 0.2);
-                
+
                 animatedBg.style.background = `
                     radial-gradient(circle at 20% 80%, ${primaryRgba} 0%, transparent 50%),
                     radial-gradient(circle at 80% 20%, ${secondaryRgba} 0%, transparent 50%),
@@ -184,7 +303,7 @@ class Portfolio {
                 `;
             }
         }
-        
+
         if (bgPattern) {
             bgPattern.style.backgroundImage = `
                 radial-gradient(circle at 25% 25%, ${colors.primary} 1px, transparent 1px),
@@ -199,12 +318,12 @@ class Portfolio {
     updateFloatingOrbs(colors) {
         const orb1 = document.getElementById('floatingOrb1');
         const orb2 = document.getElementById('floatingOrb2');
-        
+
         if (orb1) {
             const primaryRgba = this.hexToRgba(colors.primary, 0.3);
             orb1.style.background = `radial-gradient(circle, ${primaryRgba} 0%, transparent 70%)`;
         }
-        
+
         if (orb2) {
             const secondaryRgba = this.hexToRgba(colors.secondary, 0.3);
             orb2.style.background = `radial-gradient(circle, ${secondaryRgba} 0%, transparent 70%)`;
@@ -228,7 +347,7 @@ class Portfolio {
         // Set first tab as active by default
         const firstTab = document.querySelector('.tab-btn');
         const firstContent = document.querySelector('.tab-content');
-        
+
         if (firstTab && firstContent) {
             firstTab.classList.add('active');
             firstContent.classList.add('active');
@@ -240,7 +359,7 @@ class Portfolio {
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        
+
         document.querySelectorAll('.tab-content').forEach(content => {
             content.classList.remove('active');
         });
@@ -248,11 +367,11 @@ class Portfolio {
         // Add active class to selected tab and content
         const selectedTab = document.querySelector(`[data-tab="${tabName}"]`);
         const selectedContent = document.getElementById(tabName);
-        
+
         if (selectedTab && selectedContent) {
             selectedTab.classList.add('active');
             selectedContent.classList.add('active');
-            
+
             // Animate skill bars if skills tab is selected
             if (tabName === 'skills') {
                 setTimeout(() => this.animateSkillBars(), 100);
@@ -276,7 +395,7 @@ class Portfolio {
         if (section) {
             const offset = 80; // Account for fixed navigation
             const elementPosition = section.offsetTop - offset;
-            
+
             window.scrollTo({
                 top: elementPosition,
                 behavior: 'smooth'
@@ -287,10 +406,10 @@ class Portfolio {
     toggleMobileMenu() {
         const navLinks = document.getElementById('navLinks');
         const menuBtn = document.getElementById('mobileMenuBtn');
-        
+
         if (navLinks && menuBtn) {
             const isOpen = navLinks.style.display === 'flex';
-            
+
             if (isOpen) {
                 navLinks.style.display = 'none';
                 menuBtn.innerHTML = '<i data-lucide="menu"></i>';
@@ -306,7 +425,7 @@ class Portfolio {
                 navLinks.style.borderTop = '1px solid rgba(255, 255, 255, 0.1)';
                 menuBtn.innerHTML = '<i data-lucide="x"></i>';
             }
-            
+
             // Re-initialize icons after DOM change
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
@@ -317,11 +436,11 @@ class Portfolio {
     handleResize() {
         const wasMobile = this.isMobile;
         this.isMobile = window.innerWidth <= 768;
-        
+
         // Update elements visibility based on screen size
         if (wasMobile !== this.isMobile) {
             this.updateThemeColors();
-            
+
             // Reset mobile menu if switching to desktop
             if (!this.isMobile) {
                 const navLinks = document.getElementById('navLinks');
@@ -357,15 +476,15 @@ class Portfolio {
     updateActiveNavLink() {
         const sections = ['home', 'portfolio', 'about', 'contact'];
         const navLinks = document.querySelectorAll('.nav-link');
-        
+
         let current = '';
-        
+
         sections.forEach(sectionId => {
             const section = document.getElementById(sectionId);
             if (section) {
                 const sectionTop = section.offsetTop - 100;
                 const sectionHeight = section.offsetHeight;
-                
+
                 if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                     current = sectionId;
                 }
@@ -382,17 +501,17 @@ class Portfolio {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        
+
         const form = e.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
-        
+
         // Basic validation
         if (!data.name || !data.email || !data.message) {
             this.showNotification('Please fill in all required fields.', 'error');
             return;
         }
-        
+
         if (!this.isValidEmail(data.email)) {
             this.showNotification('Please enter a valid email address.', 'error');
             return;
@@ -401,7 +520,7 @@ class Portfolio {
         // Simulate form submission (replace with actual form handling)
         this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
         form.reset();
-        
+
         // In a real implementation, you would send the data to your server:
         // this.submitForm(data);
     }
@@ -416,7 +535,7 @@ class Portfolio {
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.textContent = message;
-        
+
         // Style the notification
         Object.assign(notification.style, {
             position: 'fixed',
@@ -489,7 +608,7 @@ class Portfolio {
 }
 
 // Global functions for button clicks
-window.scrollToSection = function(sectionId) {
+window.scrollToSection = function (sectionId) {
     if (window.portfolioApp) {
         window.portfolioApp.scrollToSection(sectionId);
     }
@@ -497,18 +616,14 @@ window.scrollToSection = function(sectionId) {
 
 // Initialize the portfolio when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    window.portfolioApp = new Portfolio();
+    startIntroAnimation();
 });
 
 // Backup initialization in case DOMContentLoaded has already fired
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        if (!window.portfolioApp) {
-            window.portfolioApp = new Portfolio();
-        }
-    });
-} else {
-    window.portfolioApp = new Portfolio();
+if (document.readyState !== 'loading') {
+    if (!document.getElementById('intro-overlay')?.style.display) {
+        startIntroAnimation();
+    }
 }
 
 // Additional CSS for scroll animations
@@ -549,117 +664,60 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = animationStyles;
 document.head.appendChild(styleSheet);
 
-//web3
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const submitButton = form.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  submitButton.innerText = 'Sending...';
-
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    if (response.ok) {
-      // Clear the form fields
-      form.reset();
-      showMessage('Your message was sent successfully!', 'success');
-    } else {
-      showMessage('There was a problem sending your message. Please try again later.', 'error');
-    }
-  } catch (error) {
-    showMessage('Your message was sent successfully!');
-  }
-
-  submitButton.disabled = false;
-  submitButton.innerHTML = '<i data-lucide="send"></i> Send Message';
-});
-
+// Web3Forms and General Form Messaging
 function showMessage(message, type) {
-  let messageDiv = document.getElementById('formMessage');
-  if (!messageDiv) {
-    messageDiv = document.createElement('div');
-    messageDiv.id = 'formMessage';
-    messageDiv.style.marginTop = '1em';
-    messageDiv.style.padding = '10px';
-    messageDiv.style.borderRadius = '4px';
-    messageDiv.style.fontWeight = '600';
-    document.querySelector('.contact-form').appendChild(messageDiv);
-  }
-  messageDiv.textContent = message;
-  if (type === 'success') {
-    messageDiv.style.backgroundColor = '#d4edda';
-    messageDiv.style.color = '#155724';
-    messageDiv.style.border = '1px solid #c3e6cb';
-  } else if (type === 'error') {
-    messageDiv.style.backgroundColor = '#f8d7da';
-    messageDiv.style.color = '#721c24';
-    messageDiv.style.border = '1px solid #f5c6cb';
-  }
-  
-}
-document.getElementById('contactForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const submitButton = form.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  submitButton.innerText = 'Sending...';
-
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      form.reset();
-      showMessage('Your message was sent successfully!', 'success');
-    } else {
-      showMessage('There was a problem sending your message. Please try again later.', 'error');
+    let messageDiv = document.getElementById('formMessage');
+    if (!messageDiv) {
+        messageDiv = document.createElement('div');
+        messageDiv.id = 'formMessage';
+        messageDiv.style.marginTop = '1em';
+        messageDiv.style.padding = '10px';
+        messageDiv.style.borderRadius = '4px';
+        messageDiv.style.fontWeight = '600';
+        document.querySelector('.contact-form').appendChild(messageDiv);
     }
-  } catch (error) {
-    showMessage('Your message was sent successfully!', 'success');
-  }
-
-  submitButton.disabled = false;
-  submitButton.innerHTML = '<i data-lucide="send"></i> Send Message';
-});
-
-function showMessage(message, type) {
-  let messageDiv = document.getElementById('formMessage');
-  if (!messageDiv) {
-    messageDiv = document.createElement('div');
-    messageDiv.id = 'formMessage';
-    messageDiv.style.marginTop = '1em';
-    messageDiv.style.padding = '10px';
-    messageDiv.style.borderRadius = '4px';
-    messageDiv.style.fontWeight = '600';
-    document.querySelector('.contact-form').appendChild(messageDiv);
-  }
-  messageDiv.textContent = message;
-  if (type === 'success') {
-    messageDiv.style.backgroundColor = '#d4edda';
-    messageDiv.style.color = '#155724';
-    messageDiv.style.border = '1px solid #c3e6cb';
-  } else if (type === 'error') {
-    messageDiv.style.backgroundColor = '#f8d7da';
-    messageDiv.style.color = '#721c24';
-    messageDiv.style.border = '1px solid #f5c6cb';
-  }
+    messageDiv.textContent = message;
+    if (type === 'success') {
+        messageDiv.style.backgroundColor = '#d4edda';
+        messageDiv.style.color = '#155724';
+        messageDiv.style.border = '1px solid #c3e6cb';
+    } else if (type === 'error') {
+        messageDiv.style.backgroundColor = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.style.border = '1px solid #f5c6cb';
+    }
 }
+
+document.getElementById('contactForm')?.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.innerText = 'Sending...';
+
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            form.reset();
+            showMessage('Your message was sent successfully!', 'success');
+        } else {
+            showMessage('There was a problem sending your message. Please try again later.', 'error');
+        }
+    } catch (error) {
+        showMessage('Your message was sent successfully!', 'success');
+    }
+
+    submitButton.disabled = false;
+    submitButton.innerHTML = '<i data-lucide="send"></i> Send Message';
+});
 
