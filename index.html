@@ -960,6 +960,889 @@
                         <span class="float-text">Chat with me</span>
                     </a>
 
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- AI CHATBOT WIDGET                          -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <style>
+                        /* ── Chatbot container ── */
+                        #ai-chatbot-btn {
+                            position: fixed;
+                            bottom: 96px;
+                            right: 24px;
+                            z-index: 1000;
+                            width: 64px;
+                            height: 64px;
+                            cursor: pointer;
+                            transition: transform 0.15s ease;
+                        }
+
+                        @media (max-width: 768px) {
+                            #ai-chatbot-btn {
+                                bottom: 88px;
+                                right: 16px;
+                            }
+                        }
+
+                        /* Float animation */
+                        @keyframes aiFloat {
+
+                            0%,
+                            100% {
+                                transform: translateY(0px);
+                            }
+
+                            50% {
+                                transform: translateY(-10px);
+                            }
+                        }
+
+                        /* Rise-in on load */
+                        @keyframes aiRiseIn {
+                            from {
+                                opacity: 0;
+                                transform: translateY(60px);
+                            }
+
+                            to {
+                                opacity: 1;
+                                transform: translateY(0px);
+                            }
+                        }
+
+                        /* Pulse glow ring */
+                        @keyframes aiPulse {
+
+                            0%,
+                            100% {
+                                transform: scale(1);
+                                opacity: 0.35;
+                            }
+
+                            50% {
+                                transform: scale(1.2);
+                                opacity: 0.6;
+                            }
+                        }
+
+                        @keyframes aiPulse2 {
+
+                            0%,
+                            100% {
+                                transform: scale(1);
+                                opacity: 0.18;
+                            }
+
+                            50% {
+                                transform: scale(1.28);
+                                opacity: 0.42;
+                            }
+                        }
+
+                        /* Particle orbit */
+                        @keyframes particleOrbit {
+                            0% {
+                                opacity: 0.3;
+                                transform: translate(var(--px1), var(--py1)) scale(0.8);
+                            }
+
+                            50% {
+                                opacity: 0.9;
+                                transform: translate(var(--px2), var(--py2)) scale(1.3);
+                            }
+
+                            100% {
+                                opacity: 0.3;
+                                transform: translate(var(--px1), var(--py1)) scale(0.8);
+                            }
+                        }
+
+                        /* Orbit ring spin */
+                        @keyframes aiOrbitSpin {
+                            from {
+                                transform: rotate(0deg);
+                            }
+
+                            to {
+                                transform: rotate(360deg);
+                            }
+                        }
+
+                        /* Bounce dots */
+                        @keyframes aiBounce {
+
+                            0%,
+                            100% {
+                                transform: translateY(0);
+                                opacity: 0.4;
+                            }
+
+                            50% {
+                                transform: translateY(-6px);
+                                opacity: 1;
+                            }
+                        }
+
+                        /* Message fade in */
+                        @keyframes msgFadeIn {
+                            from {
+                                opacity: 0;
+                                transform: translateY(10px) scale(0.97);
+                            }
+
+                            to {
+                                opacity: 1;
+                                transform: translateY(0) scale(1);
+                            }
+                        }
+
+                        /* Chat window slide up */
+                        @keyframes chatOpen {
+                            from {
+                                opacity: 0;
+                                transform: scale(0.88) translateY(24px);
+                            }
+
+                            to {
+                                opacity: 1;
+                                transform: scale(1) translateY(0);
+                            }
+                        }
+
+                        @keyframes chatClose {
+                            from {
+                                opacity: 1;
+                                transform: scale(1) translateY(0);
+                            }
+
+                            to {
+                                opacity: 0;
+                                transform: scale(0.88) translateY(24px);
+                            }
+                        }
+
+                        /* Online dot pulse */
+                        @keyframes onlinePulse {
+
+                            0%,
+                            100% {
+                                opacity: 1;
+                            }
+
+                            50% {
+                                opacity: 0.4;
+                            }
+                        }
+
+                        /* ── Glow rings ── */
+                        .ai-glow-ring-1,
+                        .ai-glow-ring-2 {
+                            position: absolute;
+                            border-radius: 50%;
+                            pointer-events: none;
+                        }
+
+                        .ai-glow-ring-1 {
+                            inset: -10px;
+                            background: radial-gradient(circle, rgba(0, 240, 255, 0.18) 0%, transparent 70%);
+                            animation: aiPulse 2.5s ease-in-out infinite;
+                        }
+
+                        .ai-glow-ring-2 {
+                            inset: -18px;
+                            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+                            animation: aiPulse2 3.5s ease-in-out infinite 0.8s;
+                        }
+
+                        /* ── Main button ── */
+                        .ai-main-btn {
+                            width: 64px;
+                            height: 64px;
+                            border-radius: 50%;
+                            background: linear-gradient(135deg, #00c8ff, #8b5cf6, #a855f7);
+                            border: none;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                            box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.35), 0 0 28px rgba(0, 240, 255, 0.45), 0 0 55px rgba(139, 92, 246, 0.25), 0 8px 30px rgba(0, 0, 0, 0.5);
+                            transition: box-shadow 0.3s, transform 0.15s;
+                            font-size: 26px;
+                            color: white;
+                        }
+
+                        .ai-main-btn:hover {
+                            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.55), 0 0 40px rgba(0, 240, 255, 0.6), 0 0 70px rgba(139, 92, 246, 0.35), 0 8px 30px rgba(0, 0, 0, 0.5);
+                            transform: scale(1.1);
+                        }
+
+                        .ai-main-btn:active {
+                            transform: scale(0.93);
+                        }
+
+                        /* Shine overlay */
+                        .ai-btn-shine {
+                            position: absolute;
+                            top: 4px;
+                            left: 8px;
+                            right: 8px;
+                            height: 40%;
+                            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), transparent);
+                            border-radius: 50%;
+                            pointer-events: none;
+                        }
+
+                        /* ── Particles ── */
+                        .ai-particle {
+                            position: absolute;
+                            border-radius: 50%;
+                            pointer-events: none;
+                            left: 50%;
+                            top: 50%;
+                        }
+
+                        /* ── Tooltip ── */
+                        #ai-tooltip {
+                            position: absolute;
+                            right: 110%;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            background: rgba(10, 10, 25, 0.92);
+                            backdrop-filter: blur(16px);
+                            border: 1px solid rgba(0, 240, 255, 0.3);
+                            border-radius: 12px;
+                            padding: 8px 14px;
+                            white-space: nowrap;
+                            color: #e2e8f0;
+                            font-size: 13px;
+                            font-weight: 500;
+                            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), 0 4px 20px rgba(0, 0, 0, 0.5);
+                            pointer-events: none;
+                            opacity: 0;
+                            transition: opacity 0.4s ease;
+                            font-family: inherit;
+                        }
+
+                        #ai-tooltip.visible {
+                            opacity: 1;
+                        }
+
+                        #ai-tooltip::after {
+                            content: '';
+                            position: absolute;
+                            right: -6px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            border-top: 6px solid transparent;
+                            border-bottom: 6px solid transparent;
+                            border-left: 6px solid rgba(0, 240, 255, 0.3);
+                        }
+
+                        /* ── Chat Window ── */
+                        #ai-chat-window {
+                            position: fixed;
+                            bottom: 160px;
+                            right: 24px;
+                            width: 380px;
+                            height: 520px;
+                            z-index: 1001;
+                            border-radius: 20px;
+                            background: rgba(10, 10, 25, 0.88);
+                            backdrop-filter: blur(24px);
+                            -webkit-backdrop-filter: blur(24px);
+                            border: 1px solid rgba(0, 240, 255, 0.25);
+                            box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.1), 0 8px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 240, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+                            display: none;
+                            flex-direction: column;
+                            overflow: hidden;
+                            font-family: inherit;
+                            animation: chatOpen 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                        }
+
+                        #ai-chat-window.closing {
+                            animation: chatClose 0.25s ease forwards;
+                        }
+
+                        @media (max-width: 768px) {
+                            #ai-chat-window {
+                                bottom: 0;
+                                right: 0;
+                                width: 100vw;
+                                height: 90dvh;
+                                border-radius: 20px 20px 0 0;
+                            }
+                        }
+
+                        /* Chat header */
+                        .ai-chat-header {
+                            padding: 16px 18px;
+                            border-bottom: 1px solid rgba(0, 240, 255, 0.12);
+                            background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(139, 92, 246, 0.08));
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            flex-shrink: 0;
+                        }
+
+                        .ai-header-orb {
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background: linear-gradient(135deg, #00f0ff, #8b5cf6);
+                            box-shadow: 0 0 16px rgba(0, 240, 255, 0.5);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 18px;
+                            flex-shrink: 0;
+                            position: relative;
+                            animation: aiOrbitSpin 8s linear infinite;
+                        }
+
+                        .ai-header-orb::after {
+                            content: '';
+                            position: absolute;
+                            inset: -3px;
+                            border-radius: 50%;
+                            border: 1px dashed rgba(0, 240, 255, 0.4);
+                            pointer-events: none;
+                            animation: aiOrbitSpin 8s linear infinite reverse;
+                        }
+
+                        .ai-header-info {
+                            flex: 1;
+                            min-width: 0;
+                        }
+
+                        .ai-header-name {
+                            color: #00f0ff;
+                            font-weight: 700;
+                            font-size: 14px;
+                            line-height: 1.2;
+                        }
+
+                        .ai-header-status {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            margin-top: 3px;
+                        }
+
+                        .ai-online-dot {
+                            width: 7px;
+                            height: 7px;
+                            border-radius: 50%;
+                            background: #00ff88;
+                            animation: onlinePulse 2s ease-in-out infinite;
+                        }
+
+                        .ai-status-text {
+                            color: #94a3b8;
+                            font-size: 11px;
+                        }
+
+                        .ai-close-btn {
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%;
+                            background: rgba(255, 255, 255, 0.08);
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+                            color: #94a3b8;
+                            font-size: 16px;
+                            transition: color 0.2s, transform 0.2s, background 0.2s;
+                            flex-shrink: 0;
+                        }
+
+                        .ai-close-btn:hover {
+                            color: #00f0ff;
+                            background: rgba(0, 240, 255, 0.1);
+                            transform: rotate(90deg);
+                        }
+
+                        /* Quick prompts */
+                        .ai-quick-prompts {
+                            padding: 10px 14px 6px;
+                            display: flex;
+                            gap: 6px;
+                            flex-wrap: wrap;
+                            flex-shrink: 0;
+                            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                        }
+
+                        .ai-prompt-chip {
+                            padding: 5px 12px;
+                            border-radius: 20px;
+                            font-size: 11px;
+                            background: rgba(0, 240, 255, 0.08);
+                            border: 1px solid rgba(0, 240, 255, 0.2);
+                            color: #7dd3fc;
+                            cursor: pointer;
+                            font-weight: 500;
+                            transition: all 0.2s;
+                            font-family: inherit;
+                        }
+
+                        .ai-prompt-chip:hover {
+                            background: rgba(0, 240, 255, 0.16);
+                            transform: scale(1.05);
+                        }
+
+                        /* Messages area */
+                        .ai-messages {
+                            flex: 1;
+                            overflow-y: auto;
+                            padding: 14px 14px 4px;
+                            scrollbar-width: thin;
+                            scrollbar-color: rgba(0, 240, 255, 0.2) transparent;
+                        }
+
+                        .ai-messages::-webkit-scrollbar {
+                            width: 4px;
+                        }
+
+                        .ai-messages::-webkit-scrollbar-thumb {
+                            background: rgba(0, 240, 255, 0.2);
+                            border-radius: 2px;
+                        }
+
+                        /* Message bubbles */
+                        .ai-msg-row {
+                            display: flex;
+                            margin-bottom: 12px;
+                            animation: msgFadeIn 0.35s ease;
+                        }
+
+                        .ai-msg-row.user {
+                            justify-content: flex-end;
+                        }
+
+                        .ai-msg-row.bot {
+                            justify-content: flex-start;
+                        }
+
+                        .ai-bot-avatar {
+                            width: 28px;
+                            height: 28px;
+                            border-radius: 50%;
+                            background: linear-gradient(135deg, #00f0ff, #8b5cf6);
+                            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 13px;
+                            margin-right: 8px;
+                            margin-top: 2px;
+                            flex-shrink: 0;
+                        }
+
+                        .ai-bubble {
+                            max-width: 80%;
+                            padding: 10px 14px;
+                            font-size: 13px;
+                            line-height: 1.55;
+                            border-radius: 18px;
+                        }
+
+                        .ai-bubble.user {
+                            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(139, 92, 246, 0.25));
+                            border: 1px solid rgba(0, 240, 255, 0.3);
+                            color: #e2e8f0;
+                            border-radius: 18px 18px 4px 18px;
+                        }
+
+                        .ai-bubble.bot {
+                            background: rgba(255, 255, 255, 0.05);
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            color: #cbd5e1;
+                            border-radius: 4px 18px 18px 18px;
+                        }
+
+                        .ai-bubble strong {
+                            color: #00f0ff;
+                        }
+
+                        /* Typing dots */
+                        .ai-typing-dots {
+                            display: flex;
+                            align-items: center;
+                            gap: 4px;
+                            padding: 8px 4px;
+                        }
+
+                        .ai-typing-dots span {
+                            width: 8px;
+                            height: 8px;
+                            border-radius: 50%;
+                            background: #00f0ff;
+                        }
+
+                        .ai-typing-dots span:nth-child(1) {
+                            animation: aiBounce 0.8s ease-in-out infinite 0s;
+                        }
+
+                        .ai-typing-dots span:nth-child(2) {
+                            animation: aiBounce 0.8s ease-in-out infinite 0.15s;
+                        }
+
+                        .ai-typing-dots span:nth-child(3) {
+                            animation: aiBounce 0.8s ease-in-out infinite 0.3s;
+                        }
+
+                        /* Input bar */
+                        .ai-input-bar {
+                            padding: 12px 14px;
+                            border-top: 1px solid rgba(0, 240, 255, 0.12);
+                            background: rgba(0, 0, 0, 0.2);
+                            display: flex;
+                            gap: 8px;
+                            align-items: center;
+                            flex-shrink: 0;
+                        }
+
+                        #ai-input {
+                            flex: 1;
+                            background: rgba(255, 255, 255, 0.05);
+                            border: 1px solid rgba(0, 240, 255, 0.2);
+                            border-radius: 26px;
+                            padding: 10px 16px;
+                            color: #e2e8f0;
+                            font-size: 13px;
+                            outline: none;
+                            transition: border-color 0.2s, box-shadow 0.2s;
+                            font-family: inherit;
+                            box-sizing: border-box;
+                        }
+
+                        #ai-input::placeholder {
+                            color: #475569;
+                        }
+
+                        #ai-input:focus {
+                            border-color: rgba(0, 240, 255, 0.5);
+                            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.08), 0 0 14px rgba(0, 240, 255, 0.1);
+                        }
+
+                        #ai-send-btn {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            background: linear-gradient(135deg, #00f0ff, #8b5cf6);
+                            border: none;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-shrink: 0;
+                            font-size: 16px;
+                            box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
+                            transition: all 0.2s;
+                            color: white;
+                        }
+
+                        #ai-send-btn:hover {
+                            transform: scale(1.1);
+                        }
+
+                        #ai-send-btn:active {
+                            transform: scale(0.9);
+                        }
+
+                        #ai-send-btn:disabled {
+                            background: rgba(255, 255, 255, 0.06);
+                            box-shadow: none;
+                            cursor: not-allowed;
+                        }
+                    </style>
+
+                    <!-- Bot trigger button -->
+                    <div id="ai-chatbot-btn"
+                        style="opacity:0; animation: aiRiseIn 1s cubic-bezier(0.34,1.56,0.64,1) 0.5s forwards;">
+                        <div class="ai-glow-ring-2"></div>
+                        <div class="ai-glow-ring-1"></div>
+                        <!-- Particles rendered via JS -->
+                        <div id="ai-particles" style="position:absolute;inset:0;pointer-events:none;"></div>
+                        <!-- Tooltip -->
+                        <div id="ai-tooltip">Ask me about Binay 🤖</div>
+                        <!-- Float wrapper -->
+                        <div id="ai-float-wrap"
+                            style="animation: aiFloat 3.5s ease-in-out infinite; position:relative; width:64px; height:64px;">
+                            <button class="ai-main-btn" id="ai-open-btn" aria-label="Open AI chatbot">
+                                <div class="ai-btn-shine"></div>
+                                ✦
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Chat Window -->
+                    <div id="ai-chat-window">
+                        <!-- Header -->
+                        <div class="ai-chat-header">
+                            <div class="ai-header-orb">🤖</div>
+                            <div class="ai-header-info">
+                                <div class="ai-header-name">Binay's AI Assistant</div>
+                                <div class="ai-header-status">
+                                    <div class="ai-online-dot"></div>
+                                    <span class="ai-status-text">Online · AI Powered</span>
+                                </div>
+                            </div>
+                            <button class="ai-close-btn" id="ai-close-btn" aria-label="Close chat">✕</button>
+                        </div>
+                        <!-- Quick prompts -->
+                        <div class="ai-quick-prompts" id="ai-quick-prompts">
+                            <button class="ai-prompt-chip" data-q="Skills">Skills</button>
+                            <button class="ai-prompt-chip" data-q="Projects">Projects</button>
+                            <button class="ai-prompt-chip" data-q="Contact">Contact</button>
+                            <button class="ai-prompt-chip" data-q="About Binay">About Binay</button>
+                        </div>
+                        <!-- Messages -->
+                        <div class="ai-messages" id="ai-messages"></div>
+                        <!-- Input -->
+                        <div class="ai-input-bar">
+                            <input id="ai-input" type="text" placeholder="Ask about Binay..." maxlength="200"
+                                autocomplete="off" />
+                            <button id="ai-send-btn" aria-label="Send">➤</button>
+                        </div>
+                    </div>
+
+                    <script>
+                        (function () {
+                            /* ── Responses ── */
+                            var RESPONSES = {
+                                hello: "Hey there! 👋 I'm Binay's AI assistant. Ask me anything about his skills, projects, or how to get in touch!",
+                                hi: "Hi! 👋 Nice to meet you! I'm here to tell you all about Binay Paramanik. What would you like to know?",
+                                skill: "Binay is skilled in <strong>React, TypeScript, Tailwind CSS & Framer Motion</strong> for front-end, plus <strong>Generative AI, IoT</strong> and tools like Firebase & Node.js. A true full-stack explorer! 🚀",
+                                project: "Binay has built exciting projects including <strong>PrepTrack OS</strong> (AI placement prep), <strong>WebMitra</strong>, <strong>MindWell</strong>, IoT systems, and more! Check his GitHub at <strong>github.com/Binay8392</strong> 💻",
+                                contact: "You can reach Binay at <strong>binayparamanik3@gmail.com</strong> or connect on <strong>LinkedIn</strong> (linkedin.com/in/binay-paramanik). He loves meeting new people! 📩",
+                                email: "Binay's email is <strong>binayparamanik3@gmail.com</strong> — feel free to drop him a message! 📧",
+                                linkedin: "Find Binay on LinkedIn at <strong>linkedin.com/in/binay-paramanik</strong> — always open to connecting! 🔗",
+                                github: "Binay's GitHub is <strong>github.com/Binay8392</strong> — packed with cool projects from React apps to AI experiments! ⭐",
+                                ai: "Binay is deeply passionate about <strong>Generative AI</strong> and prompt engineering. He's always exploring new AI tools and building AI-powered apps! 🤖",
+                                iot: "Binay loves <strong>IoT</strong> — from hardware prototyping (Arduino, Raspberry Pi) to embedded systems, he bridges the physical and digital world! 🔌",
+                                react: "React is one of Binay's core strengths! He builds beautiful, performant UIs with React, TypeScript, and Framer Motion for smooth animations. ⚛️",
+                                about: "Binay Paramanik is a passionate MERN Stack Developer, AI/ML Engineer & IoT Specialist. He thrives at the intersection of <strong>AI, Web, and IoT</strong>! 🚀",
+                                coffee: "☕ Binay runs on coffee! He famously debugs better at 2 AM than 2 PM. Perhaps the caffeine unlocks a special coding mode!",
+                                mern: "Binay is a full <strong>MERN Stack Developer</strong> — MongoDB, Express, React, and Node.js. He builds scalable, modern web applications! 💪",
+                                name: "His full name is <strong>Binay Paramanik</strong> — a passionate developer dedicated to pushing the boundaries of technology! 🚀"
+                            };
+
+                            function getReply(q) {
+                                var lower = q.toLowerCase();
+                                for (var key in RESPONSES) {
+                                    if (lower.indexOf(key) !== -1) return RESPONSES[key];
+                                }
+                                if (lower.indexOf('work') !== -1 || lower.indexOf('hire') !== -1 || lower.indexOf('job') !== -1)
+                                    return "Binay is open to exciting opportunities! Reach him at <strong>binayparamanik3@gmail.com</strong> to discuss collaborations or roles. 🎯";
+                                if (lower.indexOf('where') !== -1 || lower.indexOf('location') !== -1)
+                                    return "Binay is based in <strong>India 🇮🇳</strong>, building cool tech and making an impact from his corner of the world!";
+                                if (lower.indexOf('learn') !== -1 || lower.indexOf('study') !== -1)
+                                    return "Binay is a dedicated lifelong learner — always leveling up in AI, web dev, and IoT. Learning never stops! 📚";
+                                return "Great question! I can tell you about Binay's <strong>skills, projects, contact info, AI work, or IoT projects</strong>. What would you like to know? 🤖";
+                            }
+
+                            /* ── State ── */
+                            var isOpen = false;
+                            var greeted = false;
+                            var magnetX = 0, magnetY = 0;
+                            var raf = null;
+
+                            /* ── DOM refs ── */
+                            var btn = document.getElementById('ai-chatbot-btn');
+                            var openBtn = document.getElementById('ai-open-btn');
+                            var closeBtn = document.getElementById('ai-close-btn');
+                            var window_ = document.getElementById('ai-chat-window');
+                            var messages = document.getElementById('ai-messages');
+                            var input = document.getElementById('ai-input');
+                            var sendBtn = document.getElementById('ai-send-btn');
+                            var tooltip = document.getElementById('ai-tooltip');
+                            var quickPromptsEl = document.getElementById('ai-quick-prompts');
+                            var floatWrap = document.getElementById('ai-float-wrap');
+
+                            /* ── Particles ── */
+                            var particleData = [
+                                { angle: 0, r: 42, size: 3, color: '#00f0ff', dur: 3.0 },
+                                { angle: 60, r: 50, size: 2, color: '#8b5cf6', dur: 3.4 },
+                                { angle: 120, r: 42, size: 1.5, color: '#a855f7', dur: 3.8 },
+                                { angle: 180, r: 50, size: 3, color: '#06b6d4', dur: 2.8 },
+                                { angle: 240, r: 42, size: 2, color: '#7c3aed', dur: 4.2 },
+                                { angle: 300, r: 50, size: 1.5, color: '#00d4aa', dur: 3.6 }
+                            ];
+                            var particleContainer = document.getElementById('ai-particles');
+                            particleData.forEach(function (p, i) {
+                                var rad = p.angle * Math.PI / 180;
+                                var px1 = Math.cos(rad) * p.r * 0.6 - p.size / 2;
+                                var py1 = Math.sin(rad) * p.r * 0.6 - p.size / 2;
+                                var px2 = Math.cos(rad) * p.r - p.size / 2;
+                                var py2 = Math.sin(rad) * p.r - p.size / 2;
+                                var el = document.createElement('div');
+                                el.className = 'ai-particle';
+                                el.style.cssText = [
+                                    'width:' + p.size + 'px', 'height:' + p.size + 'px',
+                                    'background:' + p.color,
+                                    'box-shadow: 0 0 ' + (p.size * 3) + 'px ' + p.color,
+                                    'margin-left: -' + (p.size / 2) + 'px', 'margin-top: -' + (p.size / 2) + 'px',
+                                    '--px1:' + px1 + 'px', '--py1:' + py1 + 'px',
+                                    '--px2:' + px2 + 'px', '--py2:' + py2 + 'px',
+                                    'animation: particleOrbit ' + p.dur + 's ease-in-out infinite ' + (i * 0.25) + 's'
+                                ].join(';');
+                                particleContainer.appendChild(el);
+                            });
+
+                            /* ── Tooltip show after 2s ── */
+                            setTimeout(function () {
+                                if (!isOpen) tooltip.classList.add('visible');
+                            }, 2000);
+                            setTimeout(function () {
+                                tooltip.classList.remove('visible');
+                            }, 6000);
+
+                            /* ── Magnetic attraction ── */
+                            document.addEventListener('mousemove', function (e) {
+                                if (isOpen) { magnetX = 0; magnetY = 0; return; }
+                                var rect = btn.getBoundingClientRect();
+                                var cx = rect.left + rect.width / 2;
+                                var cy = rect.top + rect.height / 2;
+                                var dx = e.clientX - cx;
+                                var dy = e.clientY - cy;
+                                var dist = Math.sqrt(dx * dx + dy * dy);
+                                var threshold = 160;
+                                if (dist < threshold) {
+                                    var strength = (1 - dist / threshold) * 18;
+                                    magnetX = (dx / dist) * strength;
+                                    magnetY = (dy / dist) * strength;
+                                } else {
+                                    magnetX = 0; magnetY = 0;
+                                }
+                            });
+
+                            /* Smooth spring to magnet target */
+                            var curX = 0, curY = 0;
+                            function animateMagnet() {
+                                curX += (magnetX - curX) * 0.12;
+                                curY += (magnetY - curY) * 0.12;
+                                btn.style.transform = 'translate(' + curX.toFixed(2) + 'px, ' + curY.toFixed(2) + 'px)';
+                                raf = requestAnimationFrame(animateMagnet);
+                            }
+                            animateMagnet();
+
+                            /* ── Open / Close ── */
+                            function openChat() {
+                                isOpen = true;
+                                tooltip.classList.remove('visible');
+                                window_.style.display = 'flex';
+                                window_.classList.remove('closing');
+                                openBtn.innerHTML = '<div class="ai-btn-shine"></div>▾';
+                                openBtn.style.background = 'linear-gradient(135deg, #8b5cf6, #00f0ff)';
+                                floatWrap.style.animation = 'none';
+                                if (!greeted) {
+                                    greeted = true;
+                                    setTimeout(function () {
+                                        addBotMsg("Hey! 👋 I'm Binay's AI assistant. Ask me about his skills, projects, or how to contact him!");
+                                    }, 200);
+                                }
+                                setTimeout(function () { input.focus(); }, 300);
+                            }
+
+                            function closeChat() {
+                                window_.classList.add('closing');
+                                setTimeout(function () {
+                                    window_.style.display = 'none';
+                                    window_.classList.remove('closing');
+                                }, 250);
+                                isOpen = false;
+                                openBtn.innerHTML = '<div class="ai-btn-shine"></div>✦';
+                                openBtn.style.background = 'linear-gradient(135deg, #00c8ff, #8b5cf6, #a855f7)';
+                                floatWrap.style.animation = 'aiFloat 3.5s ease-in-out infinite';
+                            }
+
+                            openBtn.addEventListener('click', function () { isOpen ? closeChat() : openChat(); });
+                            closeBtn.addEventListener('click', closeChat);
+
+                            /* ── Add messages ── */
+                            function addUserMsg(text) {
+                                var row = document.createElement('div');
+                                row.className = 'ai-msg-row user';
+                                var bubble = document.createElement('div');
+                                bubble.className = 'ai-bubble user';
+                                bubble.textContent = text;
+                                row.appendChild(bubble);
+                                messages.appendChild(row);
+                                scrollBottom();
+                            }
+
+                            function addBotMsg(html) {
+                                var row = document.createElement('div');
+                                row.className = 'ai-msg-row bot';
+                                var avatar = document.createElement('div');
+                                avatar.className = 'ai-bot-avatar';
+                                avatar.textContent = '🤖';
+                                var bubble = document.createElement('div');
+                                bubble.className = 'ai-bubble bot';
+                                bubble.innerHTML = html;
+                                row.appendChild(avatar);
+                                row.appendChild(bubble);
+                                messages.appendChild(row);
+                                scrollBottom();
+                            }
+
+                            function showTyping() {
+                                var row = document.createElement('div');
+                                row.className = 'ai-msg-row bot';
+                                row.id = 'ai-typing-row';
+                                var avatar = document.createElement('div');
+                                avatar.className = 'ai-bot-avatar';
+                                avatar.textContent = '🤖';
+                                var bubble = document.createElement('div');
+                                bubble.className = 'ai-bubble bot';
+                                bubble.innerHTML = '<div class="ai-typing-dots"><span></span><span></span><span></span></div>';
+                                row.appendChild(avatar);
+                                row.appendChild(bubble);
+                                messages.appendChild(row);
+                                scrollBottom();
+                            }
+
+                            function removeTyping() {
+                                var el = document.getElementById('ai-typing-row');
+                                if (el) el.remove();
+                            }
+
+                            function scrollBottom() {
+                                messages.scrollTop = messages.scrollHeight;
+                            }
+
+                            /* ── Send message ── */
+                            function sendMessage(text) {
+                                text = (text || input.value).trim();
+                                if (!text) return;
+                                input.value = '';
+                                // Hide quick prompts after first message
+                                quickPromptsEl.style.display = 'none';
+                                addUserMsg(text);
+                                showTyping();
+                                var delay = 900 + Math.random() * 700;
+                                setTimeout(function () {
+                                    removeTyping();
+                                    addBotMsg(getReply(text));
+                                }, delay);
+                            }
+
+                            sendBtn.addEventListener('click', function () { sendMessage(); });
+                            input.addEventListener('keydown', function (e) {
+                                if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+                            });
+
+                            /* Quick prompts */
+                            document.querySelectorAll('.ai-prompt-chip').forEach(function (chip) {
+                                chip.addEventListener('click', function () {
+                                    sendMessage(chip.getAttribute('data-q'));
+                                });
+                            });
+                        })();
+                    </script>
+
                     <!-- Footer -->
                     <footer class="footer">
                         <div class="footer-container">
